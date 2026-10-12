@@ -169,7 +169,7 @@ require_once __DIR__ . '/../includes/header.php';
   </div>
   <div class="stat-card">
     <span>Accepted / Scheduled</span>
-    <strong style="color: #2563EB;"><?= (int)($stats['accepted_cnt'] ?? 0) ?></strong>
+    <strong style="color: #242424;"><?= (int)($stats['accepted_cnt'] ?? 0) ?></strong>
   </div>
   <div class="stat-card">
     <span>Completed Jobs</span>
@@ -322,21 +322,21 @@ require_once __DIR__ . '/../includes/header.php';
     <?php if (count($reviews) > 0): ?>
       <div style="display: flex; flex-direction: column; gap: 12px;">
         <?php foreach ($reviews as $r): ?>
-          <div style="border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 14px; background: #F8FAFC;">
+          <div style="border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 14px; background: #FAF7ED;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-              <strong style="color: #0F172A; font-size: 0.9rem;"><?= htmlspecialchars($r['customer_name']) ?></strong>
+              <strong style="color: #242424; font-size: 0.9rem;"><?= htmlspecialchars($r['customer_name']) ?></strong>
               <span style="color: #D97706; font-size: 0.85rem; font-weight: 700;"><?= str_repeat('&#9733;', (int)$r['rating']) ?></span>
             </div>
-            <p style="margin-bottom: 4px; font-size: 0.88rem; color: #475569; line-height: 1.45;">
+            <p style="margin-bottom: 4px; font-size: 0.88rem; color: #57534E; line-height: 1.45;">
               <?= nl2br(htmlspecialchars($r['review'])) ?>
             </p>
-            <div style="font-size: 0.75rem; color: #94A3B8;"><?= date('M d, Y', strtotime($r['created_at'])) ?></div>
+            <div style="font-size: 0.75rem; color: #77736A;"><?= date('M d, Y', strtotime($r['created_at'])) ?></div>
           </div>
         <?php endforeach; ?>
       </div>
     <?php else: ?>
-      <div style="padding: 24px; text-align: center; background: #F8FAFC; border: 1px dashed var(--border-color); border-radius: var(--radius-sm);">
-        <p style="margin-bottom: 0; color: #64748B; font-size: 0.88rem;">No customer reviews recorded yet.</p>
+      <div style="padding: 24px; text-align: center; background: #FAF7ED; border: 1px dashed var(--border-color); border-radius: var(--radius-sm);">
+        <p style="margin-bottom: 0; color: #77736A; font-size: 0.88rem;">No customer reviews recorded yet.</p>
       </div>
     <?php endif; ?>
   </section>

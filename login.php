@@ -101,9 +101,9 @@ require_once __DIR__ . '/includes/header.php';
       </p>
     </div>
 
-    <!-- Quick Demo Accounts Helper (Material Style) -->
-    <div style="margin-top: 20px; padding: 14px; background: #F8FAFC; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.82rem; color: #475569;">
-      <strong style="display: block; margin-bottom: 6px; color: #0F172A;">Demo Test Credentials:</strong>
+    <!-- Quick Demo Accounts Helper (Warm Style) -->
+    <div style="margin-top: 20px; padding: 14px; background: #FAF7ED; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.82rem; color: #57534E;">
+      <strong style="display: block; margin-bottom: 6px; color: #242424;">Demo Test Credentials:</strong>
       <ul style="padding-left: 18px; margin: 0; line-height: 1.6;">
         <li>Customer: <code>customer@example.com</code> / <code>password123</code></li>
         <li>Electrician: <code>electrician@example.com</code> / <code>password123</code></li>

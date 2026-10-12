@@ -62,27 +62,28 @@ The application implements genuine three-tier role-based access control:
 
 ---
 
-## Design System & Material UI Architecture
+## Design System & Visual Architecture
 
-The application strictly implements a **Clean Light Material Design** visual language with a restrained, professional palette:
+The application implements a clean, warm, and modern visual design inspired by the visual clarity and warmth of modern Indian quick-commerce applications:
 
-| Element | Color | Role |
+| Element | Hex Color | Description & Role |
 | :--- | :--- | :--- |
-| **Primary Background** | `#F8FAFC` | Slate-50: dominant light page background |
-| **Surface / Cards** | `#FFFFFF` | Clean elevated white surfaces |
-| **Primary Accent** | `#2563EB` | Blue-600: primary buttons, active links, focused states, important highlights |
-| **Primary Text** | `#1E293B` | Slate-800: headings, labels, and primary copy |
-| **Secondary Text** | `#64748B` | Slate-500: captions, descriptions, subheadings |
-| **Borders** | `#E2E8F0` | Slate-200: subtle component separation |
+| **Primary Background** | `#FFFCF2` | Warm off-white: dominant page and container canvas |
+| **Card / Surface** | `#FFFFFF` | Clean white elevated cards and panels |
+| **Primary Accent** | `#F7D84A` | Warm vibrant yellow: primary action buttons, active tabs, search highlights |
+| **Accent Tint** | `#FFF8D6` / `#FAF7ED` | Soft yellow / warm tint for search bar, badges, and secondary surfaces |
+| **Primary Text** | `#242424` | Dark charcoal: high-contrast headings, body copy, and button text |
+| **Secondary Text** | `#77736A` | Warm grey: supporting copy, metadata, timestamps |
+| **Borders** | `#EAE5D9` | Subtle warm grey: clean card and input borders |
 
-### Material UI Principles Implemented:
+### Visual Design Principles Implemented:
+- **Warm & Welcoming Atmosphere**: Dominant `#FFFCF2` off-white backdrop combined with crisp `#FFFFFF` cards and warm `#EAE5D9` borders.
+- **High-Contrast Yellow CTAs**: Vibrant `#F7D84A` buttons paired with `#242424` dark charcoal text ensuring WCAG accessibility compliance.
 - **Consistent 8px Spacing Grid** across containers, paddings, and margins.
-- **Clean Typography**: Google Font `Roboto` with clear size hierarchy (Page heading, section heading, card heading, body, caption).
-- **Subtle Elevation**: Multi-tiered soft box shadows (`--elevation-1`, `--elevation-2`, `--elevation-3`) replacing harsh borders.
-- **8–12px Border Radii** for comfortable, modern visual hierarchy without excessive pill-shapes.
-- **Material Form Controls**: Crisp borders with soft blue focus halos (`0 0 0 3px rgba(37, 99, 235, 0.15)`).
-- **Material Status Chips**: Soft background badges for `PENDING` (amber), `ACCEPTED` (blue), `COMPLETED` (emerald), and `CANCELLED` (rose).
-- **Material Dialogs & Snackbars**: Modals with backdrop blur and toast feedback messages.
+- **Clean Typography**: Inter / Plus Jakarta Sans modern font hierarchy (Page heading, section heading, card heading, body, caption).
+- **Subtle Elevation**: Multi-tiered soft box shadows (`--elevation-1`, `--elevation-2`, `--elevation-3`) with warm undertones.
+- **Warm Status Chips**: Soft background badges for `PENDING` (warm amber), `ACCEPTED` (fresh green), `COMPLETED` (emerald), and `CANCELLED` (rose).
+- **Interactive Modals & Snackbars**: Modals with backdrop blur and feedback flash messages.
 
 ---
 

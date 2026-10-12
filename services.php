@@ -46,7 +46,7 @@ $providers = $stmt->fetchAll();
   <p class="subtitle">Search verified independent handymen and certified service technicians near you.</p>
 </div>
 
-<!-- Material Search & Filter Form -->
+<!-- Search & Filter Form (Warm Material Style) -->
 <form class="search-bar-material" action="services.php" method="GET">
   <div>
     <label for="filter-service">Service Category</label>
@@ -90,11 +90,11 @@ $providers = $stmt->fetchAll();
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
   <h2 style="font-size: 1.3rem;">
     Available Providers 
-    <span style="font-size: 0.9rem; font-weight: 500; color: #64748B;">(<?= count($providers) ?> found)</span>
+    <span style="font-size: 0.9rem; font-weight: 500; color: #77736A;">(<?= count($providers) ?> found)</span>
   </h2>
 </div>
 
-<!-- Provider Cards (Material Design) -->
+<!-- Provider Cards -->
 <?php if (count($providers) > 0): ?>
   <div class="provider-grid">
     <?php foreach ($providers as $p): ?>
@@ -107,7 +107,7 @@ $providers = $stmt->fetchAll();
               </div>
               <div>
                 <h3 style="margin-bottom: 2px; font-size: 1.05rem;"><?= htmlspecialchars($p['business_name']) ?></h3>
-                <div style="font-size: 0.82rem; color: #64748B;">
+                <div style="font-size: 0.82rem; color: #77736A;">
                   <?= htmlspecialchars($p['service_name']) ?> &bull; <?= htmlspecialchars($p['experience'] ?? '2+ years') ?> exp
                 </div>
               </div>
@@ -115,11 +115,11 @@ $providers = $stmt->fetchAll();
             <span class="rating-stars">&#9733; <?= number_format($p['rating'], 1) ?></span>
           </div>
 
-          <p style="font-size: 0.88rem; color: #475569; margin-bottom: 14px; min-height: 42px;">
+          <p style="font-size: 0.88rem; color: #524E46; margin-bottom: 14px; min-height: 42px;">
             <?= htmlspecialchars(mb_strimwidth($p['description'] ?? '', 0, 115, '...')) ?>
           </p>
 
-          <div class="provider-meta" style="background: #F8FAFC; padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); margin-bottom: 14px;">
+          <div class="provider-meta" style="background: #FAF7ED; padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); margin-bottom: 14px;">
             <div><strong>Location:</strong> <?= htmlspecialchars($p['provider_address'] ?? 'Local service area') ?></div>
             <div><strong>Inspection Fee:</strong> &#8377;<?= number_format($p['fee'], 2) ?></div>
             <div><strong>Availability:</strong> <?= htmlspecialchars($p['availability']) ?></div>
@@ -135,11 +135,11 @@ $providers = $stmt->fetchAll();
   </div>
 <?php else: ?>
   <div class="card" style="text-align: center; padding: 48px 24px; background: #FFFFFF;">
-    <div style="width: 56px; height: 56px; border-radius: 50%; background: #F1F5F9; color: #64748B; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto; font-size: 1.5rem;">
+    <div style="width: 56px; height: 56px; border-radius: 50%; background: #FAF7ED; color: #8A6D0B; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto; font-size: 1.5rem; border: 1px solid #F5E296;">
       &#128269;
     </div>
     <h3 style="margin-bottom: 6px;">No approved service providers found</h3>
-    <p style="color: #64748B; max-width: 480px; margin: 0 auto 20px auto; font-size: 0.95rem;">
+    <p style="color: #77736A; max-width: 480px; margin: 0 auto 20px auto; font-size: 0.95rem;">
       We couldn't find any verified professionals matching your current search criteria. Try selecting another category or clearing your location filter.
     </p>
     <a href="services.php" class="btn">Clear All Filters</a>

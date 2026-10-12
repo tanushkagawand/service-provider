@@ -168,7 +168,7 @@ require_once __DIR__ . '/includes/header.php';
       </div>
 
       <!-- Provider Specific Section -->
-      <div id="provider-fields" style="<?= $accountType === 'provider' ? '' : 'display: none;' ?> background: #F8FAFC; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 18px; margin-top: 4px; display: flex; flex-direction: column; gap: 14px;">
+      <div id="provider-fields" style="<?= $accountType === 'provider' ? '' : 'display: none;' ?> background: #FAF7ED; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 18px; margin-top: 4px; display: flex; flex-direction: column; gap: 14px;">
         <span class="eyebrow" style="margin-bottom: 0;">Provider Profile Details</span>
 
         <div>

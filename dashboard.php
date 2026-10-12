@@ -123,7 +123,7 @@ require_once __DIR__ . '/includes/header.php';
 <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
   <div>
     <span class="eyebrow">Customer Dashboard</span>
-    <h1 style="font-size: 1.85rem; margin-bottom: 2px;">Welcome, <?= htmlspecialchars($user['name']) ?></h1>
+    <h1 style="font-size: 1.85rem; margin-bottom: 2px; color: #242424;">Welcome, <?= htmlspecialchars($user['name']) ?></h1>
     <p class="subtitle" style="margin-bottom: 0;">Track appointment requests and view provider responses.</p>
   </div>
   <div>
@@ -131,7 +131,7 @@ require_once __DIR__ . '/includes/header.php';
   </div>
 </div>
 
-<!-- Material Stats Grid -->
+<!-- Stats Grid -->
 <div class="stats-grid">
   <div class="stat-card">
     <span>Total Bookings</span>
@@ -139,23 +139,23 @@ require_once __DIR__ . '/includes/header.php';
   </div>
   <div class="stat-card">
     <span>Pending Confirmation</span>
-    <strong style="color: #D97706;"><?= (int)($stats['pending_cnt'] ?? 0) ?></strong>
+    <strong style="color: #8A6D0B;"><?= (int)($stats['pending_cnt'] ?? 0) ?></strong>
   </div>
   <div class="stat-card">
     <span>Accepted / Scheduled</span>
-    <strong style="color: #2563EB;"><?= (int)($stats['accepted_cnt'] ?? 0) ?></strong>
+    <strong style="color: #166534;"><?= (int)($stats['accepted_cnt'] ?? 0) ?></strong>
   </div>
   <div class="stat-card">
     <span>Completed Jobs</span>
-    <strong style="color: #059669;"><?= (int)($stats['completed_cnt'] ?? 0) ?></strong>
+    <strong style="color: #15803D;"><?= (int)($stats['completed_cnt'] ?? 0) ?></strong>
   </div>
 </div>
 
 <!-- Bookings Table Section -->
 <section style="margin-bottom: 40px;">
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-    <h2 style="font-size: 1.25rem;">Your Service Appointments</h2>
-    <span style="font-size: 0.85rem; font-weight: 500; color: #64748B;"><?= count($bookings) ?> total bookings</span>
+    <h2 style="font-size: 1.25rem; color: #242424;">Your Service Appointments</h2>
+    <span style="font-size: 0.85rem; font-weight: 500; color: #77736A;"><?= count($bookings) ?> total bookings</span>
   </div>
 
   <?php if (count($bookings) > 0): ?>
@@ -174,19 +174,19 @@ require_once __DIR__ . '/includes/header.php';
         <tbody>
           <?php foreach ($bookings as $b): ?>
             <tr>
-              <td><span style="font-weight: 600; color: #64748B;">#<?= $b['id'] ?></span></td>
+              <td><span style="font-weight: 600; color: #77736A;">#<?= $b['id'] ?></span></td>
               <td>
-                <div style="font-weight: 600; font-size: 0.95rem; color: #0F172A;"><?= htmlspecialchars($b['business_name']) ?></div>
-                <div style="font-size: 0.82rem; color: #64748B;"><?= htmlspecialchars($b['service_name'] ?? 'General') ?> &bull; &#8377;<?= number_format($b['fee'], 2) ?></div>
-                <div style="font-size: 0.82rem; color: #475569; margin-top: 4px; max-width: 260px;">
+                <div style="font-weight: 600; font-size: 0.95rem; color: #242424;"><?= htmlspecialchars($b['business_name']) ?></div>
+                <div style="font-size: 0.82rem; color: #77736A;"><?= htmlspecialchars($b['service_name'] ?? 'General') ?> &bull; &#8377;<?= number_format($b['fee'], 2) ?></div>
+                <div style="font-size: 0.82rem; color: #524E46; margin-top: 4px; max-width: 260px;">
                   <em>"<?= htmlspecialchars($b['problem_description']) ?>"</em>
                 </div>
               </td>
               <td>
-                <div style="font-weight: 600; color: #0F172A;"><?= date('M d, Y', strtotime($b['booking_date'])) ?></div>
-                <div style="font-size: 0.82rem; color: #64748B;"><?= date('h:i A', strtotime($b['booking_time'])) ?></div>
+                <div style="font-weight: 600; color: #242424;"><?= date('M d, Y', strtotime($b['booking_date'])) ?></div>
+                <div style="font-size: 0.82rem; color: #77736A;"><?= date('h:i A', strtotime($b['booking_time'])) ?></div>
               </td>
-              <td style="max-width: 220px; font-size: 0.88rem; color: #475569;">
+              <td style="max-width: 220px; font-size: 0.88rem; color: #524E46;">
                 <?= htmlspecialchars($b['address']) ?>
               </td>
               <td>
@@ -219,7 +219,7 @@ require_once __DIR__ . '/includes/header.php';
                   <?php endif; ?>
 
                 <?php else: ?>
-                  <span style="font-size: 0.85rem; color: #94A3B8;">&mdash;</span>
+                  <span style="font-size: 0.85rem; color: #9E998E;">&mdash;</span>
                 <?php endif; ?>
               </td>
             </tr>
@@ -229,11 +229,11 @@ require_once __DIR__ . '/includes/header.php';
     </div>
   <?php else: ?>
     <div class="card" style="text-align: center; padding: 48px 24px; background: #FFFFFF;">
-      <div style="width: 56px; height: 56px; border-radius: 50%; background: #F1F5F9; color: #64748B; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto; font-size: 1.5rem;">
+      <div style="width: 56px; height: 56px; border-radius: 50%; background: #FAF7ED; color: #8A6D0B; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto; font-size: 1.5rem; border: 1px solid #F5E296;">
         &#128197;
       </div>
-      <h3 style="margin-bottom: 6px;">You have no service bookings yet</h3>
-      <p style="color: #64748B; max-width: 480px; margin: 4px auto 20px auto; font-size: 0.92rem;">
+      <h3 style="margin-bottom: 6px; color: #242424;">You have no service bookings yet</h3>
+      <p style="color: #77736A; max-width: 480px; margin: 4px auto 20px auto; font-size: 0.92rem;">
         Browse our directory of verified electricians, plumbers, mechanics, and other local pros to book your first service.
       </p>
       <a href="services.php" class="btn">Browse Services & Providers &rarr;</a>
@@ -241,15 +241,15 @@ require_once __DIR__ . '/includes/header.php';
   <?php endif; ?>
 </section>
 
-<!-- Material Dialog Modal for Reviews -->
+<!-- Review Dialog Modal -->
 <div id="review-modal" class="modal-overlay" style="display: none;">
   <div class="modal-card">
     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
       <div>
         <span class="eyebrow" style="margin-bottom: 4px;">Service Feedback</span>
-        <h3 id="modal-provider-title" style="margin-top: 2px; font-size: 1.25rem;">Rate Completed Service</h3>
+        <h3 id="modal-provider-title" style="margin-top: 2px; font-size: 1.25rem; color: #242424;">Rate Completed Service</h3>
       </div>
-      <button type="button" onclick="closeReviewModal()" style="background:none;border:none;box-shadow:none;font-size:1.4rem;color:#64748B;cursor:pointer;padding:0;line-height:1;">&times;</button>
+      <button type="button" onclick="closeReviewModal()" style="background:none;border:none;box-shadow:none;font-size:1.4rem;color:#77736A;cursor:pointer;padding:0;line-height:1;">&times;</button>
     </div>
 
     <form action="dashboard.php" method="POST">

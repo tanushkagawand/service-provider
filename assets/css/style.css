@@ -1,40 +1,44 @@
 /* ==========================================================================
-   LOCAL SERVICE FINDER - MODERN MATERIAL DESIGN SYSTEM
+   LOCAL SERVICE FINDER - WARM LIGHT OFF-WHITE & YELLOW DESIGN SYSTEM
    Palette:
-   - Primary Background: #F8FAFC (Slate-50)
+   - Primary Background: #FFFCF2 (Warm off-white)
+   - Primary Accent: #F7D84A (Warm vibrant yellow)
+   - Accent Hover: #F5D335 / #E8C418
+   - Accent Light / Tint: #FFF8D6
    - Surface / Cards: #FFFFFF
-   - Primary Accent: #2563EB (Blue-600)
-   - Primary Text: #1E293B (Slate-800)
-   - Secondary Text: #64748B (Slate-500)
-   - Borders: #E2E8F0 (Slate-200)
+   - Primary Text: #242424 (Dark charcoal)
+   - Secondary Text: #77736A (Warm grey)
+   - Borders: #EAE5D9 (Subtle warm grey)
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
 :root {
-  --bg-main: #F8FAFC;
+  --bg-main: #FFFCF2;
   --surface: #FFFFFF;
-  --primary: #2563EB;
-  --primary-hover: #1D4ED8;
-  --primary-light: #EFF6FF;
-  --primary-border: #DBEAFE;
+  --primary: #F7D84A;
+  --primary-hover: #F4D025;
+  --primary-active: #E8C418;
+  --primary-light: #FFF8D6;
+  --primary-border: #EAC833;
   
-  --text-primary: #1E293B;
-  --text-secondary: #64748B;
-  --text-muted: #94A3B8;
+  --text-primary: #242424;
+  --text-secondary: #77736A;
+  --text-muted: #9E998E;
   
-  --border-color: #E2E8F0;
-  --border-focus: #2563EB;
+  --border-color: #EAE5D9;
+  --border-input: #DBD4C4;
+  --border-focus: #E5C327;
   
   --radius-sm: 6px;
   --radius: 10px;
   --radius-lg: 14px;
   --radius-full: 9999px;
   
-  --elevation-1: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
-  --elevation-2: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
-  --elevation-3: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
-  --elevation-modal: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  --elevation-1: 0 1px 3px 0 rgba(36, 36, 36, 0.04), 0 1px 2px -1px rgba(36, 36, 36, 0.02);
+  --elevation-2: 0 4px 6px -1px rgba(36, 36, 36, 0.06), 0 2px 4px -2px rgba(36, 36, 36, 0.03);
+  --elevation-3: 0 10px 15px -3px rgba(36, 36, 36, 0.07), 0 4px 6px -4px rgba(36, 36, 36, 0.03);
+  --elevation-modal: 0 20px 25px -5px rgba(36, 36, 36, 0.12), 0 8px 10px -6px rgba(36, 36, 36, 0.05);
 
   --font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --max-width: 1200px;
@@ -65,14 +69,14 @@ img {
 }
 
 a {
-  color: var(--primary);
+  color: var(--text-primary);
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.15s ease;
+  transition: opacity 0.15s ease;
 }
 
 a:hover {
-  color: var(--primary-hover);
+  opacity: 0.85;
   text-decoration: underline;
 }
 
@@ -93,12 +97,12 @@ p {
 }
 
 /* --------------------------------------------------------------------------
-   NAVBAR (MATERIAL DESIGN APP BAR)
+   NAVBAR (WHITE SURFACE WITH WARM BORDER & ACCENTS)
    -------------------------------------------------------------------------- */
 .navbar, .site-header, .dashboard-header, .booking-header {
   background: var(--surface);
   border-bottom: 1px solid var(--border-color);
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  box-shadow: 0 1px 3px 0 rgba(36, 36, 36, 0.03);
   padding: 12px 24px;
   position: sticky;
   top: 0;
@@ -152,31 +156,34 @@ p {
 
 .nav-links a:hover, .nav a:hover {
   color: var(--text-primary);
-  background: #F1F5F9;
+  background: #FBF8EE;
 }
 
 .nav-links a.active, .nav a.active {
-  color: var(--primary);
+  color: var(--text-primary);
   background: var(--primary-light);
+  font-weight: 600;
+  border: 1px solid #F5E296;
 }
 
 .nav-links .btn-nav, .login-button, .nav-login {
   background: var(--primary) !important;
-  color: #FFFFFF !important;
-  font-weight: 500 !important;
-  box-shadow: 0 1px 2px 0 rgba(37, 99, 235, 0.2);
+  color: var(--text-primary) !important;
+  font-weight: 600 !important;
+  border: 1px solid var(--primary-border) !important;
+  box-shadow: 0 1px 2px 0 rgba(247, 216, 74, 0.3);
 }
 
 .nav-links .btn-nav:hover, .login-button:hover, .nav-login:hover {
   background: var(--primary-hover) !important;
-  box-shadow: 0 2px 4px 0 rgba(37, 99, 235, 0.3);
+  box-shadow: 0 2px 4px 0 rgba(247, 216, 74, 0.4);
 }
 
 .user-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #F1F5F9;
+  background: #FAF7ED;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-full);
   padding: 5px 12px;
@@ -197,7 +204,7 @@ p {
 }
 
 /* --------------------------------------------------------------------------
-   BUTTONS (MATERIAL DESIGN RIPPLE / FLAT ELEVATION)
+   BUTTONS (YELLOW ACCENT & WHITE SECONDARY WITH CHARCOAL TEXT)
    -------------------------------------------------------------------------- */
 .btn, button, input[type="submit"] {
   display: inline-flex;
@@ -205,15 +212,15 @@ p {
   justify-content: center;
   gap: 8px;
   background: var(--primary);
-  color: #FFFFFF;
-  border: 1px solid transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--primary-border);
   border-radius: var(--radius-sm);
   padding: 9px 18px;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none !important;
   cursor: pointer;
-  box-shadow: var(--elevation-1);
+  box-shadow: 0 1px 2px 0 rgba(247, 216, 74, 0.25);
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: inherit;
   line-height: 1.4;
@@ -221,23 +228,25 @@ p {
 
 .btn:hover, button:hover, input[type="submit"]:hover {
   background: var(--primary-hover);
-  box-shadow: var(--elevation-2);
+  box-shadow: 0 3px 6px 0 rgba(247, 216, 74, 0.4);
   transform: translateY(-1px);
+  color: var(--text-primary);
 }
 
 .btn:active, button:active, input[type="submit"]:active {
+  background: var(--primary-active);
   transform: translateY(0);
-  box-shadow: var(--elevation-1);
+  box-shadow: 0 1px 2px 0 rgba(247, 216, 74, 0.25);
 }
 
 .btn-secondary {
-  background: var(--primary-light);
-  color: var(--primary);
-  border-color: var(--primary-border);
+  background: #FAF7ED;
+  color: var(--text-primary);
+  border-color: var(--border-color);
 }
 .btn-secondary:hover {
-  background: #DBEAFE;
-  color: var(--primary-hover);
+  background: #F4EEDC;
+  border-color: #DBD4C4;
 }
 
 .btn-outline, .btn-light {
@@ -246,17 +255,19 @@ p {
   border: 1px solid var(--border-color);
 }
 .btn-outline:hover, .btn-light:hover {
-  background: #F8FAFC;
-  border-color: #CBD5E1;
+  background: #FBF8EE;
+  border-color: #DBD4C4;
 }
 
 .btn-danger {
   background: #EF4444;
   color: #FFFFFF;
+  border-color: #DC2626;
 }
 .btn-danger:hover {
   background: #DC2626;
   box-shadow: 0 2px 4px rgba(220, 38, 38, 0.25);
+  color: #FFFFFF;
 }
 
 .btn-sm {
@@ -271,7 +282,7 @@ p {
 }
 
 /* --------------------------------------------------------------------------
-   CARDS & PANELS (MATERIAL ELEVATED SURFACES)
+   CARDS & PANELS (CLEAN WHITE SURFACES WITH WARM BORDERS)
    -------------------------------------------------------------------------- */
 .card, .dashboard-card, .service-card, .stat-card, .booking-card, .admin-card, .login-card, .signup-card {
   background: var(--surface);
@@ -288,7 +299,7 @@ p {
 }
 
 .card-secondary {
-  background: #F8FAFC;
+  background: #FAF7ED;
   border: 1px solid var(--border-color);
 }
 
@@ -328,7 +339,7 @@ p {
 }
 
 /* --------------------------------------------------------------------------
-   TYPOGRAPHY & EYEBROWS (MATERIAL CHIPS / BADGES)
+   TYPOGRAPHY & EYEBROWS (WARM YELLOW CHIPS)
    -------------------------------------------------------------------------- */
 .eyebrow, .admin-label {
   display: inline-block;
@@ -337,11 +348,11 @@ p {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   background: var(--primary-light);
-  color: var(--primary);
+  color: #7A6107;
   padding: 4px 10px;
   border-radius: var(--radius-full);
   margin-bottom: 10px;
-  border: 1px solid var(--primary-border);
+  border: 1px solid #F5E296;
 }
 
 .subtitle, .intro {
@@ -351,7 +362,7 @@ p {
 }
 
 /* --------------------------------------------------------------------------
-   FORMS & INPUTS (MATERIAL OUTLINED / FILLED STYLING)
+   FORMS & INPUTS (WARM FOCUS HALO)
    -------------------------------------------------------------------------- */
 form {
   display: flex;
@@ -382,16 +393,16 @@ textarea {
   font-family: inherit;
   color: var(--text-primary);
   background: #FFFFFF;
-  border: 1px solid #CBD5E1;
+  border: 1px solid var(--border-input);
   border-radius: var(--radius-sm);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 1px 2px rgba(36, 36, 36, 0.02);
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 0 0 3px rgba(247, 216, 74, 0.35);
 }
 
 textarea {
@@ -416,7 +427,7 @@ fieldset {
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   padding: 16px;
-  background: #F8FAFC;
+  background: #FAF7ED;
   margin-bottom: 8px;
 }
 
@@ -447,14 +458,14 @@ legend {
 }
 
 .type-option:hover {
-  border-color: var(--primary);
-  background: #F8FAFC;
+  border-color: var(--primary-border);
+  background: #FFFDF5;
 }
 
 .type-option input[type="radio"] {
   width: 18px;
   height: 18px;
-  accent-color: var(--primary);
+  accent-color: #E5C327;
 }
 
 .type-option span strong {
@@ -469,7 +480,7 @@ legend {
 }
 
 /* --------------------------------------------------------------------------
-   TABLES (MATERIAL DATA TABLE)
+   TABLES (MATERIAL DATA TABLE WITH WARM TONES)
    -------------------------------------------------------------------------- */
 .table-responsive {
   width: 100%;
@@ -488,7 +499,7 @@ table {
 }
 
 th {
-  background: #F8FAFC;
+  background: #FAF7ED;
   border-bottom: 1px solid var(--border-color);
   padding: 12px 16px;
   font-weight: 600;
@@ -501,7 +512,7 @@ th {
 
 td {
   padding: 13px 16px;
-  border-bottom: 1px solid #F1F5F9;
+  border-bottom: 1px solid #F5F1E6;
   font-size: 0.9rem;
   vertical-align: middle;
   color: var(--text-primary);
@@ -512,11 +523,11 @@ tr:last-child td {
 }
 
 tr:hover td {
-  background: #F8FAFC;
+  background: #FFFCF5;
 }
 
 /* --------------------------------------------------------------------------
-   STATUS CHIPS (MATERIAL CHIPS)
+   STATUS CHIPS (RESTRAINED, COMMUNICATIVE COLOURS)
    -------------------------------------------------------------------------- */
 .badge {
   display: inline-flex;
@@ -531,21 +542,21 @@ tr:hover td {
 }
 
 .badge-pending {
-  background: #FEF3C7;
-  color: #92400E;
-  border: 1px solid #FDE68A;
+  background: #FFF8D6;
+  color: #8A6D0B;
+  border: 1px solid #F5E296;
 }
 
 .badge-accepted, .badge-approved {
-  background: #EFF6FF;
-  color: #1D4ED8;
-  border: 1px solid #DBEAFE;
+  background: #EDFAF2;
+  color: #166534;
+  border: 1px solid #BBF7D0;
 }
 
 .badge-completed {
-  background: #ECFDF5;
-  color: #065F46;
-  border: 1px solid #A7F3D0;
+  background: #F0FDF4;
+  color: #15803D;
+  border: 1px solid #DCFCE7;
 }
 
 .badge-rejected, .badge-cancelled {
@@ -571,9 +582,9 @@ tr:hover td {
 }
 
 .alert-success {
-  background: #ECFDF5;
-  color: #065F46;
-  border: 1px solid #A7F3D0;
+  background: #EDFAF2;
+  color: #166534;
+  border: 1px solid #BBF7D0;
 }
 
 .alert-danger, .alert-error {
@@ -584,12 +595,12 @@ tr:hover td {
 
 .alert-info {
   background: var(--primary-light);
-  color: #1E40AF;
-  border: 1px solid var(--primary-border);
+  color: #785E07;
+  border: 1px solid #F5E296;
 }
 
 /* --------------------------------------------------------------------------
-   CARDS GRID (MATERIAL GRIDS)
+   CARDS GRID (MATERIAL GRIDS WITH WARM ACCENTS)
    -------------------------------------------------------------------------- */
 .service-grid, .provider-grid, .dashboard-grid {
   display: grid;
@@ -614,7 +625,7 @@ tr:hover td {
 .service-card:hover {
   transform: translateY(-2px);
   box-shadow: var(--elevation-3);
-  border-color: #CBD5E1;
+  border-color: var(--primary-border);
 }
 
 .provider-card {
@@ -647,13 +658,13 @@ tr:hover td {
   height: 44px;
   border-radius: var(--radius-full);
   background: var(--primary-light);
-  color: var(--primary);
+  color: #7A6107;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
   font-size: 1.1rem;
-  border: 1px solid var(--primary-border);
+  border: 1px solid #F5E296;
   flex-shrink: 0;
 }
 
@@ -675,7 +686,7 @@ tr:hover td {
 }
 
 /* --------------------------------------------------------------------------
-   SEARCH BAR (MATERIAL SEARCH INPUT)
+   SEARCH BAR (WHITE CARD WITH WARM BORDER & YELLOW CTA)
    -------------------------------------------------------------------------- */
 .search-bar-neo, .search-bar-material {
   background: #FFFFFF;
@@ -718,11 +729,11 @@ tr:hover td {
 }
 
 .back-link:hover {
-  color: var(--primary);
+  color: var(--text-primary);
 }
 
 /* --------------------------------------------------------------------------
-   FOOTER (CLEAN MATERIAL FOOTER)
+   FOOTER (WHITE SURFACE WITH WARM BORDER)
    -------------------------------------------------------------------------- */
 footer, .site-footer {
   margin-top: auto;
@@ -745,7 +756,7 @@ footer, .site-footer {
 }
 
 /* --------------------------------------------------------------------------
-   MODAL / DIALOG (MATERIAL DIALOG)
+   MODAL / DIALOG
    -------------------------------------------------------------------------- */
 .modal-overlay {
   position: fixed;
@@ -753,7 +764,7 @@ footer, .site-footer {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(15, 23, 42, 0.45);
+  background: rgba(36, 36, 36, 0.45);
   backdrop-filter: blur(2px);
   display: flex;
   align-items: center;
