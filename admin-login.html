@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login | Local Service Finder</title>
+  <link rel="stylesheet" href="css/admin-login.css" />
+</head>
+<body>
+  <main class="admin-page">
+    <a class="back-link" href="index.html">← Back to home</a>
+
+    <section class="admin-card">
+      <img class="admin-mark" src="images/local-service-finder-mark.png" alt="Local Service Finder logo" />
+      <p class="admin-label">ADMINISTRATION</p>
+      <h1>Admin login</h1>
+      <p class="subtitle">Sign in to manage Local Service Finder.</p>
+
+      <form id="admin-login-form" action="#" method="post">
+        <label for="admin-email">Admin email</label>
+        <input type="email" id="admin-email" name="email" placeholder="admin@example.com" autocomplete="username" required />
+
+        <label for="admin-password">Password</label>
+        <input type="password" id="admin-password" name="password" placeholder="Enter your password" autocomplete="current-password" required />
+
+        <button type="submit">Sign in as admin</button>
+      </form>
+
+      <a class="user-login" href="login.html">Go to user login</a>
+    </section>
+  </main>
+  <script>
+    document.getElementById('admin-login-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      window.location.href = 'dashboard.html?role=admin';
+    });
+  </script></body>
+</html>
+
+

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Local Service Finder</title>
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+  <header class="dashboard-header">
+    <a class="brand" href="index.html"><img class="brand-mark" src="images/local-service-finder-mark.png" alt="" />Local Service Finder</a>
+    <nav aria-label="Main navigation"><a href="services.html">Services</a><a href="contact.html">Contact</a><a class="logout" href="index.html">Log out</a></nav>
+  </header>
+  <main class="dashboard-main">
+    <section class="welcome-panel"><div><p class="eyebrow" id="role-label">YOUR DASHBOARD</p><h1 id="welcome-title">Welcome to your dashboard</h1><p id="welcome-description">Find trusted local help for your everyday needs.</p></div><div class="role-switcher" id="role-switcher"><label for="role-select">Preview dashboard</label><select id="role-select"><option value="customer">Customer</option><option value="provider">Service Provider</option><option value="admin">Admin</option></select></div></section>
+    <section class="dashboard-view" data-dashboard="customer" hidden>
+      <div class="section-title"><div><h2>Find a service</h2><p>Search local help for your home and everyday needs.</p></div><a class="primary-button" href="booking.html">Book a service</a></div>
+      <form class="search-form" action="services.html"><label class="visually-hidden" for="service-search">Search services</label><input id="service-search" name="q" type="search" placeholder="What service do you need?" /></form>
+      
+      <div class="dashboard-grid"><article class="dashboard-card"><h3>Book a service</h3><p>Tell us what you need and choose a convenient date and time.</p></article><article class="dashboard-card"><h3>Browse services</h3><p>Explore plumbing, electrical, cleaning, carpentry, tutoring, and car repair.</p></article><article class="dashboard-card"><h3>My requests</h3><p>You have no service requests yet. Find a service to get started.</p></article><article class="dashboard-card"><h3>Saved providers</h3><p>Providers you save will appear here for easy access.</p></article></div>
+    </section>
+    <section class="dashboard-view" data-dashboard="provider" hidden>
+      <div class="section-title"><div><h2>Your provider workspace</h2><p>Manage your local service profile and customer inquiries.</p></div><button type="button" class="primary-button">Add a service</button></div>
+      <div class="stats-grid"><article class="stat-card"><span>Listed services</span><strong>0</strong></article><article class="stat-card"><span>New requests</span><strong>0</strong></article><article class="stat-card"><span>Profile views</span><strong>0</strong></article></div>
+      <div class="dashboard-grid"><article class="dashboard-card"><h3>Business profile</h3><p>Add your service area, description, and contact details so customers can learn about your work.</p><a href="signup.html">Complete your profile →</a></article><article class="dashboard-card"><h3>Customer requests</h3><p>New customer inquiries will be listed here.</p></article></div>
+    </section>
+    <section class="dashboard-view" data-dashboard="admin" hidden>
+      <div class="section-title"><div><h2>Administration</h2><p>Overview of the Local Service Finder website.</p></div></div>
+      <div class="stats-grid"><article class="stat-card"><span>Customers</span><strong>0</strong></article><article class="stat-card"><span>Service providers</span><strong>0</strong></article><article class="stat-card"><span>Service categories</span><strong>6</strong></article></div>
+      <div class="dashboard-grid"><article class="dashboard-card"><h3>Manage services</h3><p>Review the service categories shown on the website.</p></article><article class="dashboard-card"><h3>Manage accounts</h3><p>Account management will be available when the site is connected to a backend.</p></article><article class="dashboard-card"><h3>Contact messages</h3><p>Messages from the contact form will appear here after backend setup.</p></article></div>
+    </section>
+  </main>
+  <footer>© Local Service Finder</footer>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const roleSelect = document.getElementById('role-select');
+    const welcomeDescription = document.getElementById('welcome-description');
+    const roleLabel = document.getElementById('role-label');
+    const roleNames = { customer: 'Customer', provider: 'Service Provider', admin: 'Admin' };
+    function showDashboard(role) {
+      if (!roleNames[role]) role = 'customer';
+      roleSelect.value = role;
+      document.getElementById('role-switcher').hidden = role === 'admin' || role === 'customer';
+      document.querySelectorAll('[data-dashboard]').forEach((panel) => { panel.hidden = panel.dataset.dashboard !== role; });
+      roleLabel.textContent = roleNames[role].toUpperCase() + ' DASHBOARD';
+      welcomeDescription.textContent = role === 'provider' ? 'Manage your services and customer requests.' : role === 'admin' ? 'Manage the website from one place.' : 'Find trusted local help for your everyday needs.';
+    }
+    roleSelect.addEventListener('change', () => showDashboard(roleSelect.value));
+    showDashboard(params.get('role') || localStorage.getItem('lsfRole') || 'customer');
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+

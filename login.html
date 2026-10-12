@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | Local Service Finder</title>
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+
+<body>
+  <main class="login-page">
+    <a class="back-link" href="index.html">← Back to home</a>
+
+    <section class="login-card">
+      <img class="brand-mark" src="images/local-service-finder-mark.png" alt="Local Service Finder logo" />
+      <h1>Welcome back</h1>
+      <p class="subtitle">Log in to find the help you need.</p>
+
+      <form id="login-form" action="#" method="post">
+        <label for="email">Email address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required
+        />
+
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+          required
+        />
+
+        <button type="submit">Log in</button>
+      </form>
+
+      <p class="signup">
+        New here? <a href="signup.html">Create an account</a>
+      </p>
+    </section>
+  </main>
+  <script>
+    document.getElementById('login-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      window.location.href = 'dashboard.html';
+    });
+  </script></body>
+</html>
+
+
