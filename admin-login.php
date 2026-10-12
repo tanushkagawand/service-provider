@@ -45,20 +45,20 @@ require_once __DIR__ . '/includes/header.php';
 <div class="admin-page">
   <a class="back-link" href="index.php">&larr; Back to home</a>
 
-  <section class="card">
+  <section class="card" style="box-shadow: var(--elevation-2);">
     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
       <img class="brand-mark" src="images/local-service-finder-mark.png" alt="Logo" />
       <div>
-        <span class="eyebrow" style="margin-bottom: 0;">SYSTEM ADMINISTRATION</span>
+        <span class="eyebrow" style="margin-bottom: 0;">Administration Portal</span>
       </div>
     </div>
 
-    <h1>Admin Login</h1>
-    <p class="subtitle">Sign in to manage providers, review bookings, and monitor user accounts.</p>
+    <h1 style="font-size: 1.85rem; margin-bottom: 4px;">Admin Login</h1>
+    <p class="subtitle" style="margin-bottom: 20px;">Sign in to verify providers, review bookings, and monitor accounts.</p>
 
     <?php if (!empty($error)): ?>
       <div class="alert alert-danger" style="margin-bottom: 20px;">
-        <?= htmlspecialchars($error) ?>
+        <span><?= htmlspecialchars($error) ?></span>
       </div>
     <?php endif; ?>
 
@@ -73,14 +73,14 @@ require_once __DIR__ . '/includes/header.php';
         <input type="password" id="admin-password" name="password" placeholder="Enter admin password" autocomplete="current-password" required />
       </div>
 
-      <button type="submit" class="btn btn-block" style="padding: 12px; font-size: 1rem; margin-top: 8px;">
+      <button type="submit" class="btn btn-block" style="padding: 11px; font-size: 0.95rem; margin-top: 6px;">
         Sign in as Admin &rarr;
       </button>
     </form>
 
-    <div style="margin-top: 24px; padding-top: 16px; border-top: 1.5px solid #E0DFD8; display: flex; justify-content: space-between; font-size: 0.95rem;">
+    <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; font-size: 0.88rem;">
       <a href="login.php">&larr; Regular User Login</a>
-      <span style="color: #666;">Default: <code>admin@example.com</code> / <code>admin123</code></span>
+      <span style="color: #64748B;">Default: <code>admin@example.com</code> / <code>admin123</code></span>
     </div>
   </section>
 </div>

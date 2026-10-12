@@ -3,6 +3,7 @@ if (!isset($basePath)) {
     $basePath = (preg_match('#/(admin|customer|provider)/#', $_SERVER['SCRIPT_NAME'] ?? '')) ? '../' : '';
 }
 require_once __DIR__ . '/auth.php';
+require_once __DIR__ . '/icons.php';
 $user = currentUser();
 $flash = getFlash();
 $title = isset($pageTitle) ? htmlspecialchars($pageTitle) . ' | Local Service Finder' : 'Local Service Finder - On-Demand Local Services';
@@ -14,6 +15,9 @@ $active = $activeNav ?? '';
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><?= $title ?></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="<?= $basePath ?>assets/css/style.css" />
   <link rel="icon" type="image/png" href="<?= $basePath ?>images/local-service-finder-mark.png" />
 </head>
@@ -41,7 +45,7 @@ $active = $activeNav ?? '';
         <a class="<?= $active === 'booking' ? 'active' : '' ?>" href="<?= $basePath ?>booking.php">Book Service</a>
         <a class="<?= $active === 'dashboard' ? 'active' : '' ?>" href="<?= $basePath ?>dashboard.php">My Bookings</a>
         <a class="<?= $active === 'contact' ? 'active' : '' ?>" href="<?= $basePath ?>contact.php">Contact</a>
-        <span class="user-badge"><?= htmlspecialchars($user['name']) ?> (Customer)</span>
+        <span class="user-badge">&#9679; <?= htmlspecialchars($user['name']) ?> (Customer)</span>
         <a class="btn-sm btn-outline" href="<?= $basePath ?>logout.php">Logout</a>
 
       <?php elseif ($user['role'] === 'provider'): ?>
@@ -49,7 +53,7 @@ $active = $activeNav ?? '';
         <a class="<?= $active === 'bookings' ? 'active' : '' ?>" href="<?= $basePath ?>provider/dashboard.php#bookings">Requests</a>
         <a class="<?= $active === 'profile' ? 'active' : '' ?>" href="<?= $basePath ?>provider/dashboard.php#profile">My Profile</a>
         <a class="<?= $active === 'services' ? 'active' : '' ?>" href="<?= $basePath ?>services.php">Directory</a>
-        <span class="user-badge"><?= htmlspecialchars($user['name']) ?> (Provider)</span>
+        <span class="user-badge">&#9679; <?= htmlspecialchars($user['name']) ?> (Provider)</span>
         <a class="btn-sm btn-outline" href="<?= $basePath ?>logout.php">Logout</a>
 
       <?php elseif ($user['role'] === 'admin'): ?>
@@ -58,7 +62,7 @@ $active = $activeNav ?? '';
         <a class="<?= $active === 'users' ? 'active' : '' ?>" href="<?= $basePath ?>admin/users.php">Users</a>
         <a class="<?= $active === 'bookings' ? 'active' : '' ?>" href="<?= $basePath ?>admin/bookings.php">Bookings</a>
         <a class="<?= $active === 'messages' ? 'active' : '' ?>" href="<?= $basePath ?>admin/messages.php">Inquiries</a>
-        <span class="user-badge">Admin</span>
+        <span class="user-badge">&#9679; Admin</span>
         <a class="btn-sm btn-outline" href="<?= $basePath ?>logout.php">Logout</a>
       <?php endif; ?>
     </nav>
@@ -68,7 +72,12 @@ $active = $activeNav ?? '';
 <div class="container">
   <?php if ($flash): ?>
     <div class="alert alert-<?= $flash['type'] === 'error' ? 'danger' : ($flash['type'] === 'success' ? 'success' : 'info') ?>">
-      <span><?= htmlspecialchars($flash['message']) ?></span>
-      <button type="button" onclick="this.parentElement.remove()" style="background:transparent;border:none;box-shadow:none;color:inherit;font-weight:900;font-size:1.2rem;cursor:pointer;padding:0;">&times;</button>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 1.1rem; line-height: 1;">
+          <?= $flash['type'] === 'success' ? '&#10003;' : ($flash['type'] === 'error' ? '&#9888;' : '&#8505;') ?>
+        </span>
+        <span><?= htmlspecialchars($flash['message']) ?></span>
+      </div>
+      <button type="button" onclick="this.parentElement.remove()" style="background:transparent;border:none;box-shadow:none;color:inherit;font-weight:700;font-size:1.2rem;cursor:pointer;padding:0;line-height:1;">&times;</button>
     </div>
   <?php endif; ?>

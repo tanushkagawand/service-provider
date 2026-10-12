@@ -49,23 +49,23 @@ require_once __DIR__ . '/../includes/header.php';
 ?>
 
 <div style="margin-bottom: 24px;">
-  <span class="eyebrow">ADMINISTRATION</span>
+  <span class="eyebrow">Administration</span>
   <h1>Service Providers Directory</h1>
   <p class="subtitle">Review verification requests and manage registered service professionals.</p>
 </div>
 
-<!-- Filter Tabs -->
+<!-- Filter Chips (Material Style) -->
 <div style="display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap;">
-  <a href="providers.php" class="btn-sm <?= $statusFilter === 'all' ? 'btn' : 'btn-outline' ?>" style="text-decoration:none;">
+  <a href="providers.php" class="btn-sm <?= $statusFilter === 'all' ? 'btn' : 'btn-outline' ?>" style="border-radius: var(--radius-full); text-decoration:none;">
     All Providers
   </a>
-  <a href="providers.php?status=pending" class="btn-sm <?= $statusFilter === 'pending' ? 'btn' : 'btn-outline' ?>" style="text-decoration:none;">
+  <a href="providers.php?status=pending" class="btn-sm <?= $statusFilter === 'pending' ? 'btn' : 'btn-outline' ?>" style="border-radius: var(--radius-full); text-decoration:none;">
     Pending Review
   </a>
-  <a href="providers.php?status=approved" class="btn-sm <?= $statusFilter === 'approved' ? 'btn' : 'btn-outline' ?>" style="text-decoration:none;">
+  <a href="providers.php?status=approved" class="btn-sm <?= $statusFilter === 'approved' ? 'btn' : 'btn-outline' ?>" style="border-radius: var(--radius-full); text-decoration:none;">
     Approved
   </a>
-  <a href="providers.php?status=rejected" class="btn-sm <?= $statusFilter === 'rejected' ? 'btn' : 'btn-outline' ?>" style="text-decoration:none;">
+  <a href="providers.php?status=rejected" class="btn-sm <?= $statusFilter === 'rejected' ? 'btn' : 'btn-outline' ?>" style="border-radius: var(--radius-full); text-decoration:none;">
     Rejected
   </a>
 </div>
@@ -87,25 +87,25 @@ require_once __DIR__ . '/../includes/header.php';
       <?php if (count($providers) > 0): ?>
         <?php foreach ($providers as $p): ?>
           <tr>
-            <td><strong>#<?= $p['id'] ?></strong></td>
+            <td><span style="font-weight: 600; color: #64748B;">#<?= $p['id'] ?></span></td>
             <td>
-              <div style="font-weight: 800;"><?= htmlspecialchars($p['business_name']) ?></div>
-              <div style="font-size: 0.85rem; color: #555;"><?= htmlspecialchars($p['service_name']) ?></div>
-              <div style="font-size: 0.8rem; color: #666; margin-top: 2px; max-width: 220px;">
+              <div style="font-weight: 600; color: #0F172A;"><?= htmlspecialchars($p['business_name']) ?></div>
+              <div style="font-size: 0.82rem; color: #64748B;"><?= htmlspecialchars($p['service_name']) ?></div>
+              <div style="font-size: 0.8rem; color: #475569; margin-top: 2px; max-width: 220px;">
                 <?= htmlspecialchars(mb_strimwidth($p['description'] ?? '', 0, 70, '...')) ?>
               </div>
             </td>
             <td>
-              <div style="font-weight: 700;"><?= htmlspecialchars($p['owner_name']) ?></div>
-              <div style="font-size: 0.85rem; color: #555;">&#9742; <?= htmlspecialchars($p['owner_phone'] ?? 'N/A') ?></div>
-              <div style="font-size: 0.85rem; color: #555;">&#9993; <?= htmlspecialchars($p['owner_email']) ?></div>
+              <div style="font-weight: 600; color: #0F172A;"><?= htmlspecialchars($p['owner_name']) ?></div>
+              <div style="font-size: 0.8rem; color: #64748B;">&#9742; <?= htmlspecialchars($p['owner_phone'] ?? 'N/A') ?></div>
+              <div style="font-size: 0.8rem; color: #64748B;">&#9993; <?= htmlspecialchars($p['owner_email']) ?></div>
             </td>
             <td>
-              <div>&#8377;<?= number_format($p['fee'], 2) ?></div>
-              <div style="font-size: 0.85rem; color: #555;"><?= htmlspecialchars($p['experience']) ?></div>
+              <div style="font-size: 0.9rem; color: #0F172A;">&#8377;<?= number_format($p['fee'], 2) ?></div>
+              <div style="font-size: 0.8rem; color: #64748B;"><?= htmlspecialchars($p['experience']) ?></div>
             </td>
             <td>
-              <strong>&#9733; <?= number_format($p['rating'], 1) ?></strong>
+              <strong style="color: #D97706;">&#9733; <?= number_format($p['rating'], 1) ?></strong>
             </td>
             <td>
               <?php
@@ -122,7 +122,7 @@ require_once __DIR__ . '/../includes/header.php';
                   <form action="providers.php<?= !empty($_GET['status']) ? '?status='.urlencode($_GET['status']) : '' ?>" method="POST" style="margin: 0;">
                     <input type="hidden" name="action" value="approve" />
                     <input type="hidden" name="provider_id" value="<?= $p['id'] ?>" />
-                    <button type="submit" class="btn btn-sm" style="background:#D1E7DD; color:#0F5132;" title="Approve Provider">&#10003; Approve</button>
+                    <button type="submit" class="btn btn-sm btn-secondary" title="Approve Provider">&#10003; Approve</button>
                   </form>
                 <?php endif; ?>
 
@@ -130,7 +130,7 @@ require_once __DIR__ . '/../includes/header.php';
                   <form action="providers.php<?= !empty($_GET['status']) ? '?status='.urlencode($_GET['status']) : '' ?>" method="POST" style="margin: 0;" onsubmit="return confirm('Reject this provider account?');">
                     <input type="hidden" name="action" value="reject" />
                     <input type="hidden" name="provider_id" value="<?= $p['id'] ?>" />
-                    <button type="submit" class="btn btn-sm btn-danger" title="Reject Provider">&#10005; Reject</button>
+                    <button type="submit" class="btn btn-sm btn-outline" style="color: #EF4444; border-color: #FECACA;" title="Reject Provider">&#10005; Reject</button>
                   </form>
                 <?php endif; ?>
               </div>
@@ -139,7 +139,7 @@ require_once __DIR__ . '/../includes/header.php';
         <?php endforeach; ?>
       <?php else: ?>
         <tr>
-          <td colspan="7" style="text-align: center; padding: 36px; color: #666;">
+          <td colspan="7" style="text-align: center; padding: 36px; color: #64748B;">
             No providers found matching status: <strong><?= htmlspecialchars($statusFilter) ?></strong>
           </td>
         </tr>

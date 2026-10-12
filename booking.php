@@ -95,16 +95,16 @@ $activeNav = "booking";
 require_once __DIR__ . '/includes/header.php';
 ?>
 
-<div style="max-width: 680px; margin: 0 auto;">
+<div style="max-width: 640px; margin: 0 auto;">
   <a class="back-link" href="dashboard.php">&larr; Back to dashboard</a>
 
-  <section class="card">
-    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-      <span class="eyebrow" style="margin-bottom: 0;">CUSTOMER REQUEST</span>
+  <section class="card" style="box-shadow: var(--elevation-2);">
+    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+      <span class="eyebrow" style="margin-bottom: 0;">Schedule Service</span>
     </div>
 
-    <h1>Book a Service</h1>
-    <p class="subtitle">Tell us what you need. Choose the verified provider, preferred date, and time that works for you.</p>
+    <h1 style="font-size: 1.85rem; margin-bottom: 4px;">Book a Service</h1>
+    <p class="subtitle" style="margin-bottom: 24px;">Tell us what you need. Choose the verified provider, preferred date, and time that works for you.</p>
 
     <?php if (!empty($errors)): ?>
       <div class="alert alert-danger" style="margin-bottom: 20px; display: block;">
@@ -142,21 +142,21 @@ require_once __DIR__ . '/includes/header.php';
       </div>
 
       <div>
-        <label for="address">Service Address</label>
+        <label for="address">Service Address / Apartment</label>
         <input id="address" name="address" type="text" placeholder="Your street address, floor, apartment number" value="<?= htmlspecialchars($_POST['address'] ?? ($user['address'] ?? '')) ?>" required />
       </div>
 
       <div>
-        <label for="details">Describe the Problem or Work Required</label>
-        <textarea id="details" name="details" rows="4" placeholder="Add specific details: e.g. brand, noisy motor, leaking pipe under the sink, or subjects required..." required><?= htmlspecialchars($_POST['details'] ?? '') ?></textarea>
+        <label for="details">Problem Description</label>
+        <textarea id="details" name="details" rows="4" placeholder="Add specific details: e.g. noisy motor, leaking pipe under the sink, or subjects required..." required><?= htmlspecialchars($_POST['details'] ?? '') ?></textarea>
       </div>
 
-      <div style="background: var(--bg-secondary); border: 2px solid var(--border-color); border-radius: 6px; padding: 14px; font-size: 0.9rem;">
-        <strong>How it works:</strong> Your booking request is submitted with <strong>PENDING</strong> status. The provider will review and accept it from their workspace. No upfront payment required.
+      <div style="background: #F8FAFC; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 14px; font-size: 0.88rem; color: #475569;">
+        <strong>How it works:</strong> Your booking request is submitted with <strong>PENDING</strong> status. The provider will review and accept it from their workspace. No upfront online payment required.
       </div>
 
-      <button type="submit" class="btn btn-block" style="padding: 14px; font-size: 1.05rem; margin-top: 8px;">
-        Send Booking Request &rarr;
+      <button type="submit" class="btn btn-block" style="padding: 12px; font-size: 0.95rem; margin-top: 4px;">
+        Submit Booking Request &rarr;
       </button>
     </form>
   </section>

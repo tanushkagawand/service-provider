@@ -7,7 +7,7 @@ $pdo = getDB();
 $searchService = sanitize($_GET['service'] ?? '');
 $searchLocation = sanitize($_GET['location'] ?? ($_GET['q'] ?? ''));
 
-// Fetch all service categories for dropdown and pills
+// Fetch all service categories for dropdown and chips
 $allServices = $pdo->query("SELECT * FROM services ORDER BY name ASC")->fetchAll();
 
 // Build query for approved providers
@@ -40,14 +40,14 @@ $stmt->execute($params);
 $providers = $stmt->fetchAll();
 ?>
 
-<div style="margin-bottom: 28px;">
-  <span class="eyebrow">SERVICES DIRECTORY</span>
+<div style="margin-bottom: 24px;">
+  <span class="eyebrow">Directory</span>
   <h1>Find Local Service Providers</h1>
-  <p class="subtitle">Search and connect with background-verified independent handymen and technicians near you.</p>
+  <p class="subtitle">Search verified independent handymen and certified service technicians near you.</p>
 </div>
 
-<!-- Search & Filter Form -->
-<form class="search-bar-neo" action="services.php" method="GET">
+<!-- Material Search & Filter Form -->
+<form class="search-bar-material" action="services.php" method="GET">
   <div>
     <label for="filter-service">Service Category</label>
     <select id="filter-service" name="service">
@@ -66,21 +66,21 @@ $providers = $stmt->fetchAll();
   </div>
 
   <div style="display: flex; gap: 8px;">
-    <button type="submit" class="btn" style="height: 48px; flex: 1;">Filter</button>
+    <button type="submit" class="btn" style="height: 42px; flex: 1;">Search</button>
     <?php if (!empty($searchService) || !empty($searchLocation)): ?>
-      <a href="services.php" class="btn btn-outline" style="height: 48px; padding: 0 14px;" title="Reset filters">Reset</a>
+      <a href="services.php" class="btn btn-outline" style="height: 42px; padding: 0 14px; display: flex; align-items: center;" title="Reset filters">Reset</a>
     <?php endif; ?>
   </div>
 </form>
 
-<!-- Quick Category Pills -->
-<div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px;">
-  <a href="services.php" class="btn-sm <?= empty($searchService) ? 'btn' : 'btn-outline' ?>" style="text-decoration: none;">
+<!-- Category Filter Chips -->
+<div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px;">
+  <a href="services.php" class="btn-sm <?= empty($searchService) ? 'btn' : 'btn-outline' ?>" style="border-radius: var(--radius-full); text-decoration: none;">
     All Categories
   </a>
   <?php foreach ($allServices as $s): ?>
     <a href="services.php?service=<?= urlencode($s['name']) ?><?= !empty($searchLocation) ? '&location='.urlencode($searchLocation) : '' ?>" 
-       class="btn-sm <?= $searchService === $s['name'] ? 'btn' : 'btn-outline' ?>" style="text-decoration: none;">
+       class="btn-sm <?= $searchService === $s['name'] ? 'btn' : 'btn-outline' ?>" style="border-radius: var(--radius-full); text-decoration: none;">
       <?= htmlspecialchars($s['name']) ?>
     </a>
   <?php endforeach; ?>
@@ -88,40 +88,45 @@ $providers = $stmt->fetchAll();
 
 <!-- Results Header -->
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-  <h2>
+  <h2 style="font-size: 1.3rem;">
     Available Providers 
-    <span style="font-size: 1rem; font-weight: 700; color: #555;">(<?= count($providers) ?> found)</span>
+    <span style="font-size: 0.9rem; font-weight: 500; color: #64748B;">(<?= count($providers) ?> found)</span>
   </h2>
 </div>
 
-<!-- Provider Cards -->
+<!-- Provider Cards (Material Design) -->
 <?php if (count($providers) > 0): ?>
   <div class="provider-grid">
     <?php foreach ($providers as $p): ?>
       <article class="provider-card">
         <div>
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
-            <span class="badge badge-accepted">Verified &bull; Approved</span>
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+            <div class="provider-header" style="margin-bottom: 0;">
+              <div class="provider-avatar">
+                <?= getProviderInitials($p['business_name']) ?>
+              </div>
+              <div>
+                <h3 style="margin-bottom: 2px; font-size: 1.05rem;"><?= htmlspecialchars($p['business_name']) ?></h3>
+                <div style="font-size: 0.82rem; color: #64748B;">
+                  <?= htmlspecialchars($p['service_name']) ?> &bull; <?= htmlspecialchars($p['experience'] ?? '2+ years') ?> exp
+                </div>
+              </div>
+            </div>
             <span class="rating-stars">&#9733; <?= number_format($p['rating'], 1) ?></span>
           </div>
 
-          <h3 style="margin-bottom: 4px;"><?= htmlspecialchars($p['business_name']) ?></h3>
-          <div style="font-weight: 700; color: #555; font-size: 0.9rem; margin-bottom: 10px;">
-            <?= htmlspecialchars($p['service_name']) ?> &bull; <?= htmlspecialchars($p['experience'] ?? '2+ years') ?> exp
-          </div>
-
-          <p style="font-size: 0.9rem; color: #444; margin-bottom: 14px;">
-            <?= htmlspecialchars(mb_strimwidth($p['description'] ?? '', 0, 120, '...')) ?>
+          <p style="font-size: 0.88rem; color: #475569; margin-bottom: 14px; min-height: 42px;">
+            <?= htmlspecialchars(mb_strimwidth($p['description'] ?? '', 0, 115, '...')) ?>
           </p>
 
-          <div class="provider-meta">
+          <div class="provider-meta" style="background: #F8FAFC; padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); margin-bottom: 14px;">
             <div><strong>Location:</strong> <?= htmlspecialchars($p['provider_address'] ?? 'Local service area') ?></div>
-            <div><strong>Visit Fee:</strong> &#8377;<?= number_format($p['fee'], 2) ?></div>
+            <div><strong>Inspection Fee:</strong> &#8377;<?= number_format($p['fee'], 2) ?></div>
             <div><strong>Availability:</strong> <?= htmlspecialchars($p['availability']) ?></div>
           </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; padding-top: 14px; border-top: 1.5px solid #E0DFD8;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-top: 12px; border-top: 1px solid var(--border-color);">
           <a href="provider-details.php?id=<?= $p['id'] ?>" class="btn btn-outline btn-sm">View Profile</a>
           <a href="booking.php?provider_id=<?= $p['id'] ?>" class="btn btn-sm">Book Service</a>
         </div>
@@ -129,9 +134,12 @@ $providers = $stmt->fetchAll();
     <?php endforeach; ?>
   </div>
 <?php else: ?>
-  <div class="card" style="text-align: center; padding: 48px 24px; background: var(--bg-secondary);">
-    <h3 style="margin-bottom: 8px;">No approved service providers found</h3>
-    <p style="color: #555; max-width: 480px; margin: 0 auto 20px auto;">
+  <div class="card" style="text-align: center; padding: 48px 24px; background: #FFFFFF;">
+    <div style="width: 56px; height: 56px; border-radius: 50%; background: #F1F5F9; color: #64748B; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto; font-size: 1.5rem;">
+      &#128269;
+    </div>
+    <h3 style="margin-bottom: 6px;">No approved service providers found</h3>
+    <p style="color: #64748B; max-width: 480px; margin: 0 auto 20px auto; font-size: 0.95rem;">
       We couldn't find any verified professionals matching your current search criteria. Try selecting another category or clearing your location filter.
     </p>
     <a href="services.php" class="btn">Clear All Filters</a>

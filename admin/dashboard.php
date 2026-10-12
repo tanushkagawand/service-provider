@@ -55,13 +55,13 @@ $activeNav = "dashboard";
 require_once __DIR__ . '/../includes/header.php';
 ?>
 
-<div style="margin-bottom: 28px;">
-  <span class="eyebrow">ADMINISTRATION CONSOLE</span>
+<div style="margin-bottom: 24px;">
+  <span class="eyebrow">Administration Console</span>
   <h1>Website Management Overview</h1>
   <p class="subtitle">Platform monitoring, verification queue, and activity metrics.</p>
 </div>
 
-<!-- Stats Grid -->
+<!-- Material Stats Grid -->
 <div class="stats-grid">
   <div class="stat-card">
     <span>Total Users</span>
@@ -71,9 +71,9 @@ require_once __DIR__ . '/../includes/header.php';
     <span>Registered Providers</span>
     <strong><?= $totProviders ?></strong>
   </div>
-  <div class="stat-card" style="<?= $pendingProv > 0 ? 'border-color: #20242A; background: #FFF3CD;' : '' ?>">
+  <div class="stat-card" style="<?= $pendingProv > 0 ? 'background: #FEF3C7; border-color: #FDE68A;' : '' ?>">
     <span>Pending Verifications</span>
-    <strong><?= $pendingProv ?></strong>
+    <strong style="<?= $pendingProv > 0 ? 'color: #B45309;' : '' ?>"><?= $pendingProv ?></strong>
   </div>
   <div class="stat-card">
     <span>Total Bookings</span>
@@ -81,7 +81,7 @@ require_once __DIR__ . '/../includes/header.php';
   </div>
   <div class="stat-card">
     <span>Completed Jobs</span>
-    <strong><?= $compBookings ?></strong>
+    <strong style="color: #059669;"><?= $compBookings ?></strong>
   </div>
   <div class="stat-card">
     <span>Inquiry Messages</span>
@@ -93,9 +93,9 @@ require_once __DIR__ . '/../includes/header.php';
 <section style="margin-bottom: 40px;">
   <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px;">
     <div>
-      <h2>Pending Provider Verifications</h2>
-      <p style="font-size: 0.95rem; color: #555; margin-bottom: 0;">
-        New service providers awaiting admin validation before appearing in search results.
+      <h2 style="font-size: 1.25rem; margin-bottom: 2px;">Pending Provider Verifications</h2>
+      <p style="font-size: 0.88rem; color: #64748B; margin-bottom: 0;">
+        New service providers awaiting administrator approval before appearing in search results.
       </p>
     </div>
     <a href="providers.php" class="btn btn-outline btn-sm">Manage All Providers &rarr;</a>
@@ -116,35 +116,35 @@ require_once __DIR__ . '/../includes/header.php';
         <tbody>
           <?php foreach ($pendingProviders as $pp): ?>
             <tr>
-              <td><strong>#<?= $pp['id'] ?></strong></td>
+              <td><span style="font-weight: 600; color: #64748B;">#<?= $pp['id'] ?></span></td>
               <td>
-                <div style="font-weight: 800; font-size: 1rem;"><?= htmlspecialchars($pp['business_name']) ?></div>
-                <div style="font-size: 0.85rem; color: #555;"><?= htmlspecialchars($pp['service_name']) ?></div>
-                <div style="font-size: 0.85rem; color: #444; margin-top: 4px;">
-                  <em><?= htmlspecialchars(mb_strimwidth($pp['description'] ?? '', 0, 90, '...')) ?></em>
+                <div style="font-weight: 600; font-size: 0.95rem; color: #0F172A;"><?= htmlspecialchars($pp['business_name']) ?></div>
+                <div style="font-size: 0.82rem; color: #64748B;"><?= htmlspecialchars($pp['service_name']) ?></div>
+                <div style="font-size: 0.8rem; color: #475569; margin-top: 2px;">
+                  <em><?= htmlspecialchars(mb_strimwidth($pp['description'] ?? '', 0, 85, '...')) ?></em>
                 </div>
               </td>
               <td>
-                <div style="font-weight: 700;"><?= htmlspecialchars($pp['owner_name']) ?></div>
-                <div style="font-size: 0.85rem; color: #555;">&#9742; <?= htmlspecialchars($pp['owner_phone'] ?? 'N/A') ?></div>
-                <div style="font-size: 0.85rem; color: #555;">&#9993; <?= htmlspecialchars($pp['owner_email']) ?></div>
+                <div style="font-weight: 600; color: #0F172A;"><?= htmlspecialchars($pp['owner_name']) ?></div>
+                <div style="font-size: 0.8rem; color: #64748B;">&#9742; <?= htmlspecialchars($pp['owner_phone'] ?? 'N/A') ?></div>
+                <div style="font-size: 0.8rem; color: #64748B;">&#9993; <?= htmlspecialchars($pp['owner_email']) ?></div>
               </td>
               <td>
-                <div><strong>Exp:</strong> <?= htmlspecialchars($pp['experience']) ?></div>
-                <div><strong>Fee:</strong> &#8377;<?= number_format($pp['fee'], 2) ?></div>
+                <div style="font-size: 0.88rem; color: #0F172A;">&#8377;<?= number_format($pp['fee'], 2) ?></div>
+                <div style="font-size: 0.8rem; color: #64748B;">Exp: <?= htmlspecialchars($pp['experience']) ?></div>
               </td>
               <td>
-                <div style="display: flex; gap: 8px;">
+                <div style="display: flex; gap: 6px;">
                   <form action="dashboard.php" method="POST" style="margin: 0;">
                     <input type="hidden" name="action" value="approve_provider" />
                     <input type="hidden" name="provider_id" value="<?= $pp['id'] ?>" />
-                    <button type="submit" class="btn btn-sm" style="background:#D1E7DD; color:#0F5132;">&#10003; Approve</button>
+                    <button type="submit" class="btn btn-sm btn-secondary">&#10003; Approve</button>
                   </form>
 
                   <form action="dashboard.php" method="POST" style="margin: 0;" onsubmit="return confirm('Reject this provider application?');">
                     <input type="hidden" name="action" value="reject_provider" />
                     <input type="hidden" name="provider_id" value="<?= $pp['id'] ?>" />
-                    <button type="submit" class="btn btn-sm btn-danger">&#10005; Reject</button>
+                    <button type="submit" class="btn btn-sm btn-outline" style="color: #EF4444; border-color: #FECACA;">&#10005; Reject</button>
                   </form>
                 </div>
               </td>
@@ -155,7 +155,9 @@ require_once __DIR__ . '/../includes/header.php';
     </div>
   <?php else: ?>
     <div class="card card-secondary" style="padding: 24px; text-align: center;">
-      <p style="margin-bottom: 0; font-weight: 700;">No pending provider approvals at this time. All registered providers are up to date.</p>
+      <p style="margin-bottom: 0; font-weight: 500; color: #64748B; font-size: 0.92rem;">
+        No pending provider approvals at this time. All registered provider accounts are validated.
+      </p>
     </div>
   <?php endif; ?>
 </section>
@@ -163,7 +165,7 @@ require_once __DIR__ . '/../includes/header.php';
 <!-- Recent Bookings Table -->
 <section style="margin-bottom: 40px;">
   <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px;">
-    <h2>Recent Platform Bookings</h2>
+    <h2 style="font-size: 1.25rem;">Recent Platform Bookings</h2>
     <a href="bookings.php" class="btn btn-outline btn-sm">View All Bookings &rarr;</a>
   </div>
 
@@ -181,13 +183,16 @@ require_once __DIR__ . '/../includes/header.php';
       <tbody>
         <?php foreach ($recentBookings as $rb): ?>
           <tr>
-            <td><strong>#<?= $rb['id'] ?></strong></td>
-            <td><?= htmlspecialchars($rb['customer_name']) ?></td>
+            <td><span style="font-weight: 600; color: #64748B;">#<?= $rb['id'] ?></span></td>
+            <td style="font-weight: 500; color: #0F172A;"><?= htmlspecialchars($rb['customer_name']) ?></td>
             <td>
-              <strong><?= htmlspecialchars($rb['business_name']) ?></strong>
-              <div style="font-size: 0.85rem; color: #555;"><?= htmlspecialchars($rb['service_name'] ?? 'General') ?></div>
+              <strong style="color: #0F172A;"><?= htmlspecialchars($rb['business_name']) ?></strong>
+              <div style="font-size: 0.8rem; color: #64748B;"><?= htmlspecialchars($rb['service_name'] ?? 'General') ?></div>
             </td>
-            <td><?= date('M d, Y', strtotime($rb['booking_date'])) ?> &bull; <?= date('h:i A', strtotime($rb['booking_time'])) ?></td>
+            <td>
+              <div style="font-size: 0.88rem; color: #0F172A;"><?= date('M d, Y', strtotime($rb['booking_date'])) ?></div>
+              <div style="font-size: 0.8rem; color: #64748B;"><?= date('h:i A', strtotime($rb['booking_time'])) ?></div>
+            </td>
             <td>
               <?php
                 $st = $rb['status'];

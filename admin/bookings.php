@@ -31,26 +31,26 @@ require_once __DIR__ . '/../includes/header.php';
 ?>
 
 <div style="margin-bottom: 24px;">
-  <span class="eyebrow">ADMINISTRATION</span>
+  <span class="eyebrow">Administration</span>
   <h1>All Platform Service Bookings</h1>
-  <p class="subtitle">Complete history of customer appointments across all service categories.</p>
+  <p class="subtitle">Complete audit of customer appointments across all service categories.</p>
 </div>
 
-<!-- Filter Tabs -->
+<!-- Filter Chips -->
 <div style="display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap;">
-  <a href="bookings.php" class="btn-sm <?= $statusFilter === 'all' ? 'btn' : 'btn-outline' ?>" style="text-decoration:none;">
+  <a href="bookings.php" class="btn-sm <?= $statusFilter === 'all' ? 'btn' : 'btn-outline' ?>" style="border-radius: var(--radius-full); text-decoration:none;">
     All Bookings (<?= count($bookings) ?>)
   </a>
-  <a href="bookings.php?status=pending" class="btn-sm <?= $statusFilter === 'pending' ? 'btn' : 'btn-outline' ?>" style="text-decoration:none;">
+  <a href="bookings.php?status=pending" class="btn-sm <?= $statusFilter === 'pending' ? 'btn' : 'btn-outline' ?>" style="border-radius: var(--radius-full); text-decoration:none;">
     Pending
   </a>
-  <a href="bookings.php?status=accepted" class="btn-sm <?= $statusFilter === 'accepted' ? 'btn' : 'btn-outline' ?>" style="text-decoration:none;">
+  <a href="bookings.php?status=accepted" class="btn-sm <?= $statusFilter === 'accepted' ? 'btn' : 'btn-outline' ?>" style="border-radius: var(--radius-full); text-decoration:none;">
     Accepted
   </a>
-  <a href="bookings.php?status=completed" class="btn-sm <?= $statusFilter === 'completed' ? 'btn' : 'btn-outline' ?>" style="text-decoration:none;">
+  <a href="bookings.php?status=completed" class="btn-sm <?= $statusFilter === 'completed' ? 'btn' : 'btn-outline' ?>" style="border-radius: var(--radius-full); text-decoration:none;">
     Completed
   </a>
-  <a href="bookings.php?status=cancelled" class="btn-sm <?= $statusFilter === 'cancelled' ? 'btn' : 'btn-outline' ?>" style="text-decoration:none;">
+  <a href="bookings.php?status=cancelled" class="btn-sm <?= $statusFilter === 'cancelled' ? 'btn' : 'btn-outline' ?>" style="border-radius: var(--radius-full); text-decoration:none;">
     Cancelled
   </a>
 </div>
@@ -71,22 +71,22 @@ require_once __DIR__ . '/../includes/header.php';
       <?php if (count($bookings) > 0): ?>
         <?php foreach ($bookings as $b): ?>
           <tr>
-            <td><strong>#<?= $b['id'] ?></strong></td>
+            <td><span style="font-weight: 600; color: #64748B;">#<?= $b['id'] ?></span></td>
             <td>
-              <div style="font-weight: 800;"><?= htmlspecialchars($b['customer_name']) ?></div>
-              <div style="font-size: 0.85rem; color: #555;">&#9742; <?= htmlspecialchars($b['customer_phone'] ?? 'N/A') ?></div>
+              <div style="font-weight: 600; color: #0F172A;"><?= htmlspecialchars($b['customer_name']) ?></div>
+              <div style="font-size: 0.8rem; color: #64748B;">&#9742; <?= htmlspecialchars($b['customer_phone'] ?? 'N/A') ?></div>
             </td>
             <td>
-              <div style="font-weight: 800;"><?= htmlspecialchars($b['business_name']) ?></div>
-              <div style="font-size: 0.85rem; color: #555;"><?= htmlspecialchars($b['service_name'] ?? 'General') ?> &bull; &#8377;<?= number_format($b['fee'], 2) ?></div>
+              <div style="font-weight: 600; color: #0F172A;"><?= htmlspecialchars($b['business_name']) ?></div>
+              <div style="font-size: 0.82rem; color: #64748B;"><?= htmlspecialchars($b['service_name'] ?? 'General') ?> &bull; &#8377;<?= number_format($b['fee'], 2) ?></div>
             </td>
             <td>
-              <div style="font-weight: 700;"><?= date('M d, Y', strtotime($b['booking_date'])) ?></div>
-              <div style="font-size: 0.85rem; color: #555;"><?= date('h:i A', strtotime($b['booking_time'])) ?></div>
+              <div style="font-weight: 600; color: #0F172A;"><?= date('M d, Y', strtotime($b['booking_date'])) ?></div>
+              <div style="font-size: 0.8rem; color: #64748B;"><?= date('h:i A', strtotime($b['booking_time'])) ?></div>
             </td>
-            <td style="font-size: 0.9rem; max-width: 260px;">
+            <td style="font-size: 0.88rem; max-width: 260px;">
               <div><strong>Loc:</strong> <?= htmlspecialchars($b['address']) ?></div>
-              <div style="margin-top: 4px; color: #444;"><em>"<?= htmlspecialchars($b['problem_description']) ?>"</em></div>
+              <div style="margin-top: 3px; color: #475569;"><em>"<?= htmlspecialchars($b['problem_description']) ?>"</em></div>
             </td>
             <td>
               <?php
@@ -102,7 +102,7 @@ require_once __DIR__ . '/../includes/header.php';
         <?php endforeach; ?>
       <?php else: ?>
         <tr>
-          <td colspan="6" style="text-align: center; padding: 36px; color: #666;">
+          <td colspan="6" style="text-align: center; padding: 36px; color: #64748B;">
             No bookings found matching selected status filter.
           </td>
         </tr>

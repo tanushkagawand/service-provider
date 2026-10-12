@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/icons.php';
 requireLogin('provider');
 
 $user = currentUser();
@@ -119,27 +120,27 @@ $activeNav = "dashboard";
 require_once __DIR__ . '/../includes/header.php';
 ?>
 
-<div style="margin-bottom: 28px;">
-  <span class="eyebrow">SERVICE PROVIDER WORKSPACE</span>
+<div style="margin-bottom: 24px;">
+  <span class="eyebrow">Provider Workspace</span>
   <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
     <div>
-      <h1 style="margin-bottom: 4px;"><?= htmlspecialchars($provider['business_name']) ?></h1>
+      <h1 style="font-size: 1.85rem; margin-bottom: 2px;"><?= htmlspecialchars($provider['business_name']) ?></h1>
       <p class="subtitle" style="margin-bottom: 0;">
-        Specialist: <strong><?= htmlspecialchars($provider['service_name'] ?? 'General') ?></strong> &bull; Registered by <?= htmlspecialchars($user['name']) ?>
+        Specialist: <strong><?= htmlspecialchars($provider['service_name'] ?? 'General') ?></strong> &bull; Managed by <?= htmlspecialchars($user['name']) ?>
       </p>
     </div>
 
     <div>
       <?php if ($provider['verification_status'] === 'approved'): ?>
-        <span class="badge badge-accepted" style="font-size: 0.9rem; padding: 6px 14px;">
+        <span class="badge badge-accepted" style="font-size: 0.85rem; padding: 6px 14px;">
           &#10003; Approved &bull; Publicly Listed
         </span>
       <?php elseif ($provider['verification_status'] === 'pending'): ?>
-        <span class="badge badge-pending" style="font-size: 0.9rem; padding: 6px 14px;">
+        <span class="badge badge-pending" style="font-size: 0.85rem; padding: 6px 14px;">
           &#9888; Verification Pending (Admin Review Required)
         </span>
       <?php else: ?>
-        <span class="badge badge-rejected" style="font-size: 0.9rem; padding: 6px 14px;">
+        <span class="badge badge-rejected" style="font-size: 0.85rem; padding: 6px 14px;">
           Verification Rejected
         </span>
       <?php endif; ?>
@@ -148,15 +149,15 @@ require_once __DIR__ . '/../includes/header.php';
 </div>
 
 <?php if ($provider['verification_status'] === 'pending'): ?>
-  <div class="alert alert-info" style="margin-bottom: 28px;">
+  <div class="alert alert-info" style="margin-bottom: 24px;">
     <div>
-      <strong>Note on Provider Verification:</strong> Your account is currently in <strong>PENDING</strong> status. 
-      Only approved providers appear in the customer search directory. An administrator can verify your account from the Admin Portal.
+      <strong>Account Verification Note:</strong> Your business profile is currently in <strong>PENDING</strong> review. 
+      Only approved providers appear in public customer search results. You can manage incoming requests and profile rates while waiting for admin validation.
     </div>
   </div>
 <?php endif; ?>
 
-<!-- Stats Overview -->
+<!-- Stats Overview (Material Stats Grid) -->
 <div class="stats-grid">
   <div class="stat-card">
     <span>Total Bookings</span>
@@ -164,27 +165,27 @@ require_once __DIR__ . '/../includes/header.php';
   </div>
   <div class="stat-card">
     <span>Pending Requests</span>
-    <strong><?= (int)($stats['pending_cnt'] ?? 0) ?></strong>
+    <strong style="color: #D97706;"><?= (int)($stats['pending_cnt'] ?? 0) ?></strong>
   </div>
   <div class="stat-card">
     <span>Accepted / Scheduled</span>
-    <strong><?= (int)($stats['accepted_cnt'] ?? 0) ?></strong>
+    <strong style="color: #2563EB;"><?= (int)($stats['accepted_cnt'] ?? 0) ?></strong>
   </div>
   <div class="stat-card">
     <span>Completed Jobs</span>
-    <strong><?= (int)($stats['completed_cnt'] ?? 0) ?></strong>
+    <strong style="color: #059669;"><?= (int)($stats['completed_cnt'] ?? 0) ?></strong>
   </div>
   <div class="stat-card">
     <span>Average Rating</span>
-    <strong>&#9733; <?= number_format($provider['rating'], 1) ?></strong>
+    <strong style="color: #D97706;">&#9733; <?= number_format($provider['rating'], 1) ?></strong>
   </div>
 </div>
 
 <!-- Customer Booking Requests Table -->
-<section id="bookings" style="margin-bottom: 48px;">
+<section id="bookings" style="margin-bottom: 44px;">
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-    <h2>Customer Booking Requests</h2>
-    <span style="font-size: 0.9rem; font-weight: 700; color: #555;"><?= count($bookings) ?> orders</span>
+    <h2 style="font-size: 1.25rem;">Customer Booking Requests</h2>
+    <span style="font-size: 0.85rem; font-weight: 500; color: #64748B;"><?= count($bookings) ?> requests</span>
   </div>
 
   <?php if (count($bookings) > 0): ?>
@@ -203,19 +204,19 @@ require_once __DIR__ . '/../includes/header.php';
         <tbody>
           <?php foreach ($bookings as $b): ?>
             <tr>
-              <td><strong>#<?= $b['id'] ?></strong></td>
+              <td><span style="font-weight: 600; color: #64748B;">#<?= $b['id'] ?></span></td>
               <td>
-                <div style="font-weight: 800; font-size: 1rem;"><?= htmlspecialchars($b['customer_name']) ?></div>
-                <div style="font-size: 0.85rem; color: #555;">&#9742; <?= htmlspecialchars($b['customer_phone'] ?? 'N/A') ?></div>
-                <div style="font-size: 0.85rem; color: #555;">&#9993; <?= htmlspecialchars($b['customer_email']) ?></div>
+                <div style="font-weight: 600; font-size: 0.92rem; color: #0F172A;"><?= htmlspecialchars($b['customer_name']) ?></div>
+                <div style="font-size: 0.8rem; color: #64748B;">&#9742; <?= htmlspecialchars($b['customer_phone'] ?? 'N/A') ?></div>
+                <div style="font-size: 0.8rem; color: #64748B;">&#9993; <?= htmlspecialchars($b['customer_email']) ?></div>
               </td>
               <td>
-                <div style="font-weight: 700;"><?= date('M d, Y', strtotime($b['booking_date'])) ?></div>
-                <div style="font-size: 0.85rem; color: #555;"><?= date('h:i A', strtotime($b['booking_time'])) ?></div>
+                <div style="font-weight: 600; color: #0F172A;"><?= date('M d, Y', strtotime($b['booking_date'])) ?></div>
+                <div style="font-size: 0.82rem; color: #64748B;"><?= date('h:i A', strtotime($b['booking_time'])) ?></div>
               </td>
-              <td style="max-width: 260px; font-size: 0.9rem;">
+              <td style="max-width: 260px; font-size: 0.88rem;">
                 <div><strong>Address:</strong> <?= htmlspecialchars($b['address']) ?></div>
-                <div style="margin-top: 4px; color: #333;"><strong>Notes:</strong> <?= htmlspecialchars($b['problem_description']) ?></div>
+                <div style="margin-top: 4px; color: #475569;"><strong>Notes:</strong> <?= htmlspecialchars($b['problem_description']) ?></div>
               </td>
               <td>
                 <?php
@@ -233,13 +234,13 @@ require_once __DIR__ . '/../includes/header.php';
                     <form action="dashboard.php" method="POST" style="margin: 0;">
                       <input type="hidden" name="action" value="accept_booking" />
                       <input type="hidden" name="booking_id" value="<?= $b['id'] ?>" />
-                      <button type="submit" class="btn btn-sm" style="background:#D1E7DD; color:#0F5132;">Accept</button>
+                      <button type="submit" class="btn btn-sm btn-secondary">Accept</button>
                     </form>
 
                     <form action="dashboard.php" method="POST" style="margin: 0;" onsubmit="return confirm('Decline this booking request?');">
                       <input type="hidden" name="action" value="reject_booking" />
                       <input type="hidden" name="booking_id" value="<?= $b['id'] ?>" />
-                      <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                      <button type="submit" class="btn btn-sm btn-outline" style="color: #EF4444; border-color: #FECACA;">Reject</button>
                     </form>
                   </div>
 
@@ -247,13 +248,13 @@ require_once __DIR__ . '/../includes/header.php';
                   <form action="dashboard.php" method="POST" style="margin: 0;" onsubmit="return confirm('Confirm that this service job is finished?');">
                     <input type="hidden" name="action" value="complete_booking" />
                     <input type="hidden" name="booking_id" value="<?= $b['id'] ?>" />
-                    <button type="submit" class="btn btn-sm btn-secondary">Mark Completed &#10003;</button>
+                    <button type="submit" class="btn btn-sm" style="background: #059669;">Mark Completed &#10003;</button>
                   </form>
 
                 <?php elseif ($b['status'] === 'completed'): ?>
                   <span class="badge badge-completed">Job Finished</span>
                 <?php else: ?>
-                  <span style="font-size: 0.85rem; color: #888;">No action</span>
+                  <span style="font-size: 0.85rem; color: #94A3B8;">&mdash;</span>
                 <?php endif; ?>
               </td>
             </tr>
@@ -262,22 +263,22 @@ require_once __DIR__ . '/../includes/header.php';
       </table>
     </div>
   <?php else: ?>
-    <div class="card" style="text-align: center; padding: 40px 20px; background: var(--bg-secondary);">
-      <h3>No customer booking requests yet</h3>
-      <p style="color: #555; max-width: 480px; margin: 8px auto 0 auto;">
-        As soon as customers schedule an appointment for your service category, requests will show up here.
+    <div class="card" style="text-align: center; padding: 40px 20px; background: #FFFFFF;">
+      <h3 style="margin-bottom: 4px; font-size: 1.15rem;">No customer booking requests yet</h3>
+      <p style="color: #64748B; max-width: 460px; margin: 4px auto 0 auto; font-size: 0.9rem;">
+        As soon as local customers schedule an appointment for your service category, requests will appear here.
       </p>
     </div>
   <?php endif; ?>
 </section>
 
-<!-- Provider Profile Editor & Recent Feedback -->
-<div style="display: grid; grid-template-columns: 3fr 2fr; gap: 32px; align-items: start;">
+<!-- Provider Profile Editor & Recent Feedback (Material Cards) -->
+<div style="display: grid; grid-template-columns: 3fr 2fr; gap: 28px; align-items: start;">
   <!-- Edit Profile Card -->
   <section id="profile" class="card">
-    <span class="eyebrow">PROFILE SETTINGS</span>
-    <h2>Manage Service Information</h2>
-    <p class="subtitle">Keep your rates, experience, and working hours up-to-date.</p>
+    <span class="eyebrow">Profile Settings</span>
+    <h2 style="font-size: 1.3rem;">Manage Service Rates & Information</h2>
+    <p class="subtitle" style="margin-bottom: 20px;">Keep your rates, experience, and working hours up-to-date.</p>
 
     <form action="dashboard.php" method="POST">
       <input type="hidden" name="action" value="update_profile" />
@@ -308,34 +309,34 @@ require_once __DIR__ . '/../includes/header.php';
         <textarea id="description" name="description" rows="4"><?= htmlspecialchars($provider['description'] ?? '') ?></textarea>
       </div>
 
-      <button type="submit" class="btn" style="padding: 12px 24px;">Save Profile Changes</button>
+      <button type="submit" class="btn" style="padding: 10px 22px;">Save Profile Changes</button>
     </form>
   </section>
 
   <!-- Recent Reviews Received -->
   <section class="card">
-    <span class="eyebrow">FEEDBACK</span>
-    <h2>Recent Reviews</h2>
-    <p class="subtitle">Ratings submitted by clients after completed jobs.</p>
+    <span class="eyebrow">Client Feedback</span>
+    <h2 style="font-size: 1.3rem;">Recent Reviews</h2>
+    <p class="subtitle" style="margin-bottom: 18px;">Ratings submitted by clients after completed jobs.</p>
 
     <?php if (count($reviews) > 0): ?>
-      <div style="display: flex; flex-direction: column; gap: 14px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
         <?php foreach ($reviews as $r): ?>
-          <div style="border: 2px solid var(--border-color); border-radius: 6px; padding: 14px; background: var(--bg-secondary);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-              <strong><?= htmlspecialchars($r['customer_name']) ?></strong>
-              <span style="font-weight: 800;"><?= str_repeat('&#9733;', (int)$r['rating']) ?></span>
+          <div style="border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 14px; background: #F8FAFC;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <strong style="color: #0F172A; font-size: 0.9rem;"><?= htmlspecialchars($r['customer_name']) ?></strong>
+              <span style="color: #D97706; font-size: 0.85rem; font-weight: 700;"><?= str_repeat('&#9733;', (int)$r['rating']) ?></span>
             </div>
-            <p style="margin-bottom: 4px; font-size: 0.92rem; color: #333;">
+            <p style="margin-bottom: 4px; font-size: 0.88rem; color: #475569; line-height: 1.45;">
               <?= nl2br(htmlspecialchars($r['review'])) ?>
             </p>
-            <div style="font-size: 0.75rem; color: #666;"><?= date('M d, Y', strtotime($r['created_at'])) ?></div>
+            <div style="font-size: 0.75rem; color: #94A3B8;"><?= date('M d, Y', strtotime($r['created_at'])) ?></div>
           </div>
         <?php endforeach; ?>
       </div>
     <?php else: ?>
-      <div style="padding: 24px; text-align: center; background: var(--bg-secondary); border: 2px dashed var(--border-color); border-radius: 6px;">
-        <p style="margin-bottom: 0; color: #555;">No reviews recorded yet.</p>
+      <div style="padding: 24px; text-align: center; background: #F8FAFC; border: 1px dashed var(--border-color); border-radius: var(--radius-sm);">
+        <p style="margin-bottom: 0; color: #64748B; font-size: 0.88rem;">No customer reviews recorded yet.</p>
       </div>
     <?php endif; ?>
   </section>

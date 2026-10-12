@@ -1,8 +1,8 @@
-# Local Service Finder &mdash; Full-Stack College Mini-Project
+# Local Service Finder &mdash; Full-Stack Service Management Application
 
-A realistic, reliable, and limited-scope full-stack web application designed for connecting neighbourhood residents with verified local service providers (such as electricians, plumbers, carpenters, mechanics, tutors, cleaners, and appliance technicians).
+A clean, modern, and limited-scope full-stack web application designed for connecting neighbourhood residents with verified local service providers (such as electricians, plumbers, carpenters, mechanics, tutors, cleaners, and appliance technicians).
 
-Developed with **PHP** and **MySQL/MariaDB**, styled using a clean **Light Neo-Brutalist** design system, and built strictly with vanilla web technologies suitable for college academic evaluation.
+Developed with **PHP** and **MySQL/MariaDB**, styled using a clean, light **Material Design / Material UI** visual language, and built strictly with vanilla web technologies suitable for college academic evaluation.
 
 ---
 
@@ -10,16 +10,17 @@ Developed with **PHP** and **MySQL/MariaDB**, styled using a clean **Light Neo-B
 
 1. [Project Overview](#project-overview)
 2. [Key Features by Role](#key-features-by-role)
-3. [Design System & Aesthetics](#design-system--aesthetics)
+3. [Design System & Material UI Architecture](#design-system--material-ui-architecture)
 4. [Technology Stack](#technology-stack)
-5. [Directory Structure](#directory-structure)
-6. [Database Architecture](#database-architecture)
-7. [Installation & Setup](#installation--setup)
+5. [Visual Assets & Imagery](#visual-assets--imagery)
+6. [Directory Structure](#directory-structure)
+7. [Database Architecture](#database-architecture)
+8. [Installation & Setup](#installation--setup)
    - [Option A: Running with XAMPP (Apache + MySQL)](#option-a-running-with-xampp-apache--mysql)
    - [Option B: Running with Standalone PHP CLI](#option-b-running-with-standalone-php-cli)
-8. [Sample Test Accounts](#sample-test-accounts)
-9. [Step-by-Step Demonstration Flow](#step-by-step-demonstration-flow)
-10. [Known Limitations & Future Scope](#known-limitations--future-scope)
+9. [Sample Test Accounts](#sample-test-accounts)
+10. [Step-by-Step Demonstration Flow](#step-by-step-demonstration-flow)
+11. [Known Limitations & Future Scope](#known-limitations--future-scope)
 
 ---
 
@@ -61,31 +62,46 @@ The application implements genuine three-tier role-based access control:
 
 ---
 
-## Design System & Aesthetics
+## Design System & Material UI Architecture
 
-The application strictly implements a **Light Neo-Brutalist** aesthetic with a curated, restrained color palette:
+The application strictly implements a **Clean Light Material Design** visual language with a restrained, professional palette:
 
-| Element | Color | Purpose |
+| Element | Color | Role |
 | :--- | :--- | :--- |
-| **Primary Background** | `#F7F6F2` | Warm off-white / very light cream (dominant page background) |
-| **Secondary Accent** | `#E8F0F5` | Muted light blue (cards, sections, selected highlights, eyebrows) |
-| **Text, Borders, Buttons** | `#20242A` | Dark charcoal (bold typography, thick borders, buttons, hard shadows) |
-| **Card Surface** | `#FFFFFF` | Clean white for tactile readability |
+| **Primary Background** | `#F8FAFC` | Slate-50: dominant light page background |
+| **Surface / Cards** | `#FFFFFF` | Clean elevated white surfaces |
+| **Primary Accent** | `#2563EB` | Blue-600: primary buttons, active links, focused states, important highlights |
+| **Primary Text** | `#1E293B` | Slate-800: headings, labels, and primary copy |
+| **Secondary Text** | `#64748B` | Slate-500: captions, descriptions, subheadings |
+| **Borders** | `#E2E8F0` | Slate-200: subtle component separation |
 
-### Styling Characteristics:
-- **2.5px solid dark borders** (`#20242A`) on all interactive cards, buttons, and form controls.
-- **Hard offset box shadows** (`4px 4px 0px #20242A`) providing a physical, tactile feel without muddy blur.
-- **Tactile button transitions** with crisp `:hover` and `:active` press states.
-- Clean system typography, uppercase badges, and no excessive gradients or flashy animations.
+### Material UI Principles Implemented:
+- **Consistent 8px Spacing Grid** across containers, paddings, and margins.
+- **Clean Typography**: Google Font `Roboto` with clear size hierarchy (Page heading, section heading, card heading, body, caption).
+- **Subtle Elevation**: Multi-tiered soft box shadows (`--elevation-1`, `--elevation-2`, `--elevation-3`) replacing harsh borders.
+- **8–12px Border Radii** for comfortable, modern visual hierarchy without excessive pill-shapes.
+- **Material Form Controls**: Crisp borders with soft blue focus halos (`0 0 0 3px rgba(37, 99, 235, 0.15)`).
+- **Material Status Chips**: Soft background badges for `PENDING` (amber), `ACCEPTED` (blue), `COMPLETED` (emerald), and `CANCELLED` (rose).
+- **Material Dialogs & Snackbars**: Modals with backdrop blur and toast feedback messages.
 
 ---
 
 ## Technology Stack
 
-- **Frontend**: HTML5, Vanilla CSS3 (custom Neo-Brutalist tokens), Vanilla JavaScript.
+- **Frontend**: HTML5, Vanilla CSS3 (Material UI Design Tokens), Vanilla JavaScript.
 - **Backend**: PHP 8.x (Session management, PDO prepared statements, `password_hash`/`password_verify`).
 - **Database**: MySQL / MariaDB (via PDO) with automated fallback to SQLite for immediate testing.
 - **Environment**: Compatible with standard XAMPP (Apache + MySQL) and built-in PHP development server.
+
+---
+
+## Visual Assets & Imagery
+
+A limited number of high-quality, professional, and bright assets are integrated into the UI:
+1. **Homepage Hero Image** (`assets/images/hero_service_pro.jpg`): Realistic, bright photograph of a friendly local service technician with tools in a modern home.
+2. **Category Visual Icons** (`includes/icons.php`): Clean Material vector icons for Electrician, Plumber, Carpenter, Mechanic, Tutor, Cleaner, and Appliance Repair.
+3. **Service Work Preview** (`assets/images/service_electrical.jpg`, `service_plumbing.jpg`): High-resolution previews for provider detail pages.
+4. **Provider Avatars**: Clean Material Design circular avatar badges with initial monograms and role status chips.
 
 ---
 
@@ -96,15 +112,19 @@ service-provider-main/
 │
 ├── assets/
 │   ├── css/
-│   │   └── style.css            # Core Light Neo-Brutalist design system
+│   │   └── style.css            # Core Material Design / Material UI stylesheet
 │   ├── images/
-│   │   └── local-service-finder-mark.png # Brand mark logo
+│   │   ├── hero_service_pro.jpg # High-res hero image
+│   │   ├── service_electrical.jpg # Electrical service work photo
+│   │   ├── service_plumbing.jpg   # Plumbing installation photo
+│   │   └── local-service-finder-mark.png # Material blue brand mark
 │   └── js/
 │
 ├── includes/
 │   ├── db.php                  # Centralized PDO connection (XAMPP MySQL + SQLite fallback)
 │   ├── auth.php                # Session authentication, role checking, flash messaging
-│   ├── header.php              # Responsive header with dynamic role-based navigation
+│   ├── icons.php               # Material Design SVG icons & avatar helper
+│   ├── header.php              # Responsive Material app bar with role navigation
 │   └── footer.php              # Standardized footer component
 │
 ├── admin/
@@ -181,7 +201,7 @@ The application database is named `local_service_finder` and consists of 6 relat
 
 ### Option B: Running with Standalone PHP CLI
 
-If you do not have XAMPP installed or want to run the project instantly without configuring a database server:
+If you want to run the project instantly without configuring a database server:
 
 1. Open PowerShell or Command Prompt in the project directory:
    ```bash
@@ -223,13 +243,13 @@ All sample passwords use industry standard bcrypt hashes.
 To present a complete live demonstration of the mini-project:
 
 1. **Browse & Search**:
-   - Visit the home page (`index.php`). Notice the light neo-brutalist hero section and search bar.
+   - Visit the home page (`index.php`). Notice the clean Material UI hero section, search form, and category cards.
    - Click **Services** to view the directory. Filter by **Electrician** or search by keyword `Mumbai`.
 2. **Inspect Provider Profile**:
    - Click **View Profile** on *Sharma Electrical Works* (`provider-details.php?id=1`).
-   - Notice the standard visit fee (₹400), verified rating, experience (6 years), and past customer reviews.
+   - Notice the standard visit fee (₹400), verified chip, experience (6 years), and past customer reviews.
 3. **Book an Appointment**:
-   - Click **Book This Provider Now**.
+   - Click **Book Service Now**.
    - If not logged in, you will be redirected to the login page with a friendly prompt.
    - Log in using `customer@example.com` / `password123`.
    - You are redirected directly to `booking.php` with Sharma Electrical Works pre-selected.
@@ -272,4 +292,4 @@ In alignment with college mini-project scope guidelines, advanced features have 
 
 ## Project Status
 
-**Complete and Verified**: Fully functional PHP backend, normalized database schemas, role security checks, and Light Neo-Brutalist design system. Tested end-to-end with zero frontend or backend errors.
+**Complete and Verified**: Fully functional PHP backend, normalized database schemas, role security checks, and Light Material Design / Material UI system. Tested end-to-end with zero frontend or backend errors.

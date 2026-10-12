@@ -57,20 +57,20 @@ require_once __DIR__ . '/includes/header.php';
 <div class="auth-page">
   <a class="back-link" href="index.php">&larr; Back to home</a>
 
-  <section class="card">
+  <section class="card" style="box-shadow: var(--elevation-2);">
     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
       <img class="brand-mark" src="images/local-service-finder-mark.png" alt="Logo" />
       <div>
-        <span class="eyebrow" style="margin-bottom: 0;">ACCOUNT ACCESS</span>
+        <span class="eyebrow" style="margin-bottom: 0;">Account Access</span>
       </div>
     </div>
 
-    <h1>Welcome back</h1>
-    <p class="subtitle">Log in to manage bookings, find services, or view your provider workspace.</p>
+    <h1 style="font-size: 1.85rem; margin-bottom: 4px;">Welcome back</h1>
+    <p class="subtitle" style="margin-bottom: 20px;">Log in to manage bookings, find services, or view your provider workspace.</p>
 
     <?php if (!empty($error)): ?>
       <div class="alert alert-danger" style="margin-bottom: 20px;">
-        <?= htmlspecialchars($error) ?>
+        <span><?= htmlspecialchars($error) ?></span>
       </div>
     <?php endif; ?>
 
@@ -87,13 +87,13 @@ require_once __DIR__ . '/includes/header.php';
         <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required />
       </div>
 
-      <button type="submit" class="btn btn-block" style="padding: 12px; font-size: 1rem; margin-top: 8px;">
-        Log in &rarr;
+      <button type="submit" class="btn btn-block" style="padding: 11px; font-size: 0.95rem; margin-top: 6px;">
+        Sign In &rarr;
       </button>
     </form>
 
-    <div style="margin-top: 24px; padding-top: 16px; border-top: 1.5px solid #E0DFD8; font-size: 0.95rem;">
-      <p style="margin-bottom: 8px;">
+    <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-color); font-size: 0.9rem;">
+      <p style="margin-bottom: 6px;">
         New to Local Service Finder? <a href="signup.php">Create an account</a>
       </p>
       <p style="margin-bottom: 0;">
@@ -101,10 +101,10 @@ require_once __DIR__ . '/includes/header.php';
       </p>
     </div>
 
-    <!-- Quick Demo Accounts Helper -->
-    <div style="margin-top: 24px; padding: 14px; background: var(--bg-secondary); border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.85rem;">
-      <strong style="display: block; margin-bottom: 6px;">Demo Test Credentials:</strong>
-      <ul style="padding-left: 18px; margin: 0; line-height: 1.5;">
+    <!-- Quick Demo Accounts Helper (Material Style) -->
+    <div style="margin-top: 20px; padding: 14px; background: #F8FAFC; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.82rem; color: #475569;">
+      <strong style="display: block; margin-bottom: 6px; color: #0F172A;">Demo Test Credentials:</strong>
+      <ul style="padding-left: 18px; margin: 0; line-height: 1.6;">
         <li>Customer: <code>customer@example.com</code> / <code>password123</code></li>
         <li>Electrician: <code>electrician@example.com</code> / <code>password123</code></li>
         <li>Plumber: <code>plumber@example.com</code> / <code>password123</code></li>

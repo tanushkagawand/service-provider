@@ -111,16 +111,16 @@ require_once __DIR__ . '/includes/header.php';
 <div class="signup-page">
   <a class="back-link" href="index.php">&larr; Back to home</a>
 
-  <section class="card">
+  <section class="card" style="box-shadow: var(--elevation-2);">
     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
       <img class="brand-mark" src="images/local-service-finder-mark.png" alt="Logo" />
       <div>
-        <span class="eyebrow" style="margin-bottom: 0;">JOIN LOCAL SERVICE FINDER</span>
+        <span class="eyebrow" style="margin-bottom: 0;">Get Started</span>
       </div>
     </div>
 
-    <h1>Create your account</h1>
-    <p class="subtitle">Choose whether you want to book services or offer your expertise locally.</p>
+    <h1 style="font-size: 1.85rem; margin-bottom: 4px;">Create your account</h1>
+    <p class="subtitle" style="margin-bottom: 20px;">Choose whether you want to book services or offer your expertise locally.</p>
 
     <?php if (!empty($errors)): ?>
       <div class="alert alert-danger" style="margin-bottom: 20px; display: block;">
@@ -168,8 +168,8 @@ require_once __DIR__ . '/includes/header.php';
       </div>
 
       <!-- Provider Specific Section -->
-      <div id="provider-fields" style="<?= $accountType === 'provider' ? '' : 'display: none;' ?> background: var(--bg-secondary); border: 2px solid var(--border-color); border-radius: 6px; padding: 18px; margin-top: 4px; display: flex; flex-direction: column; gap: 14px;">
-        <span class="eyebrow" style="margin-bottom: 0;">PROVIDER PROFILE DETAILS</span>
+      <div id="provider-fields" style="<?= $accountType === 'provider' ? '' : 'display: none;' ?> background: #F8FAFC; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 18px; margin-top: 4px; display: flex; flex-direction: column; gap: 14px;">
+        <span class="eyebrow" style="margin-bottom: 0;">Provider Profile Details</span>
 
         <div>
           <label for="business-name">Business / Trade Name</label>
@@ -222,12 +222,12 @@ require_once __DIR__ . '/includes/header.php';
         </div>
       </div>
 
-      <button type="submit" class="btn btn-block" style="padding: 12px; font-size: 1rem; margin-top: 8px;">
+      <button type="submit" class="btn btn-block" style="padding: 12px; font-size: 0.95rem; margin-top: 6px;">
         Create Account &rarr;
       </button>
     </form>
 
-    <div style="margin-top: 24px; padding-top: 16px; border-top: 1.5px solid #E0DFD8; font-size: 0.95rem;">
+    <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-color); font-size: 0.9rem;">
       <p style="margin-bottom: 0;">
         Already have an account? <a href="login.php">Log in to your account</a>
       </p>

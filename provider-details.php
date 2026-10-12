@@ -40,56 +40,71 @@ $revStmt = $pdo->prepare("
 $revStmt->execute([$providerId]);
 $reviews = $revStmt->fetchAll();
 $reviewCount = count($reviews);
+
+// Select relevant sample service work image if available
+$serviceImg = 'assets/images/service_electrical.jpg';
+if (stripos($provider['service_name'], 'plumb') !== false) {
+    $serviceImg = 'assets/images/service_plumbing.jpg';
+}
 ?>
 
-<div style="margin-bottom: 24px;">
+<div style="margin-bottom: 20px;">
   <a href="services.php" class="back-link">&larr; Back to all services</a>
 </div>
 
 <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 32px; align-items: start;">
   <!-- Main Details Column -->
   <div>
-    <div class="card" style="margin-bottom: 32px;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
-        <div>
-          <span class="badge badge-accepted" style="margin-bottom: 8px;">
-            <?= htmlspecialchars(ucfirst($provider['verification_status'])) ?> Provider
-          </span>
-          <h1 style="font-size: 2.2rem; margin-bottom: 4px;"><?= htmlspecialchars($provider['business_name']) ?></h1>
-          <p style="font-size: 1.1rem; color: #555; margin-bottom: 0;">
-            Managed by <strong><?= htmlspecialchars($provider['owner_name']) ?></strong> &bull; <?= htmlspecialchars($provider['service_name']) ?>
-          </p>
+    <div class="card" style="margin-bottom: 28px;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; flex-wrap: wrap; gap: 16px;">
+        <div style="display: flex; gap: 16px; align-items: flex-start;">
+          <div class="provider-avatar" style="width: 58px; height: 58px; font-size: 1.3rem;">
+            <?= getProviderInitials($provider['business_name']) ?>
+          </div>
+          <div>
+            <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 4px;">
+              <span class="badge badge-accepted"><?= htmlspecialchars(ucfirst($provider['verification_status'])) ?> Provider</span>
+              <span style="font-size: 0.85rem; color: #64748B;">&bull; <?= htmlspecialchars($provider['service_name']) ?></span>
+            </div>
+            <h1 style="font-size: 1.85rem; margin-bottom: 4px;"><?= htmlspecialchars($provider['business_name']) ?></h1>
+            <p style="font-size: 0.95rem; color: #64748B; margin-bottom: 0;">
+              Owner: <strong><?= htmlspecialchars($provider['owner_name']) ?></strong> &bull; <?= htmlspecialchars($provider['provider_address'] ?? 'Local coverage') ?>
+            </p>
+          </div>
         </div>
 
-        <div style="text-align: right; background: var(--bg-secondary); border: 2px solid var(--border-color); border-radius: 6px; padding: 12px 18px; box-shadow: var(--shadow-sm);">
-          <div style="font-size: 1.8rem; font-weight: 900; line-height: 1;">
+        <div style="background: #F8FAFC; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 12px 18px; text-align: right;">
+          <div style="font-size: 1.6rem; font-weight: 700; color: #D97706; line-height: 1;">
             &#9733; <?= number_format($provider['rating'], 1) ?>
           </div>
-          <div style="font-size: 0.8rem; font-weight: 700; color: #555; margin-top: 4px;">
+          <div style="font-size: 0.78rem; color: #64748B; margin-top: 4px;">
             <?= $reviewCount ?> verified review<?= $reviewCount === 1 ? '' : 's' ?>
           </div>
         </div>
       </div>
 
-      <hr style="border: none; border-top: 2px solid #E0DFD8; margin: 20px 0;" />
+      <!-- Feature service work image -->
+      <div style="margin-bottom: 24px; border-radius: var(--radius-sm); overflow: hidden; max-height: 260px; border: 1px solid var(--border-color);">
+        <img src="<?= $serviceImg ?>" alt="Service Work Preview" style="width: 100%; height: 260px; object-fit: cover;" />
+      </div>
 
-      <h3>About This Provider</h3>
-      <p style="font-size: 1.05rem; line-height: 1.7; color: #333; margin-bottom: 24px;">
+      <h3 style="margin-bottom: 8px;">About the Business</h3>
+      <p style="font-size: 0.98rem; line-height: 1.6; color: #334155; margin-bottom: 24px;">
         <?= nl2br(htmlspecialchars($provider['description'] ?? 'No additional description provided.')) ?>
       </p>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; background: var(--bg-secondary); border: 2px solid var(--border-color); border-radius: 6px; padding: 20px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; background: #F8FAFC; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 16px;">
         <div>
-          <span style="display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase;">Professional Experience</span>
-          <strong style="font-size: 1.1rem;"><?= htmlspecialchars($provider['experience'] ?? 'Experienced') ?></strong>
+          <span style="display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: #64748B;">Experience</span>
+          <strong style="font-size: 1.05rem; color: #0F172A;"><?= htmlspecialchars($provider['experience'] ?? 'Experienced') ?></strong>
         </div>
         <div>
-          <span style="display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase;">Standard Inspection Fee</span>
-          <strong style="font-size: 1.1rem;">&#8377;<?= number_format($provider['fee'], 2) ?></strong>
+          <span style="display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: #64748B;">Standard Visit Fee</span>
+          <strong style="font-size: 1.05rem; color: #0F172A;">&#8377;<?= number_format($provider['fee'], 2) ?></strong>
         </div>
         <div>
-          <span style="display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase;">Working Availability</span>
-          <strong style="font-size: 1.05rem;"><?= htmlspecialchars($provider['availability']) ?></strong>
+          <span style="display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: #64748B;">Working Hours</span>
+          <strong style="font-size: 0.95rem; color: #0F172A;"><?= htmlspecialchars($provider['availability']) ?></strong>
         </div>
       </div>
     </div>
@@ -97,63 +112,63 @@ $reviewCount = count($reviews);
     <!-- Reviews Section -->
     <div class="card">
       <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px;">
-        <h3>Customer Reviews (<?= $reviewCount ?>)</h3>
-        <span class="rating-stars">&#9733; <?= number_format($provider['rating'], 1) ?> Average</span>
+        <h3 style="font-size: 1.25rem;">Client Reviews (<?= $reviewCount ?>)</h3>
+        <span class="rating-stars">&#9733; <?= number_format($provider['rating'], 1) ?> Average Rating</span>
       </div>
 
       <?php if ($reviewCount > 0): ?>
-        <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
           <?php foreach ($reviews as $rev): ?>
-            <div style="border: 2px solid var(--border-color); border-radius: 6px; padding: 18px; background: #FAF9F5; box-shadow: var(--shadow-sm);">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                <strong><?= htmlspecialchars($rev['customer_name']) ?></strong>
+            <div style="border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 16px; background: #FFFFFF;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <strong style="font-size: 0.95rem; color: #0F172A;"><?= htmlspecialchars($rev['customer_name']) ?></strong>
                 <div>
-                  <span style="color: #20242A; font-weight: 800;">
+                  <span style="color: #D97706; font-size: 0.95rem;">
                     <?= str_repeat('&#9733;', (int)$rev['rating']) . str_repeat('&#9734;', 5 - (int)$rev['rating']) ?>
                   </span>
-                  <span style="font-size: 0.8rem; color: #666; margin-left: 8px;"><?= date('M d, Y', strtotime($rev['created_at'])) ?></span>
+                  <span style="font-size: 0.8rem; color: #64748B; margin-left: 8px;"><?= date('M d, Y', strtotime($rev['created_at'])) ?></span>
                 </div>
               </div>
-              <p style="margin-bottom: 0; color: #333; font-size: 0.95rem;">
+              <p style="margin-bottom: 0; color: #475569; font-size: 0.92rem; line-height: 1.5;">
                 <?= nl2br(htmlspecialchars($rev['review'])) ?>
               </p>
             </div>
           <?php endforeach; ?>
         </div>
       <?php else: ?>
-        <div style="padding: 24px; text-align: center; background: var(--bg-secondary); border: 2px dashed var(--border-color); border-radius: 6px;">
-          <p style="margin-bottom: 0; color: #555;">No customer reviews yet. Book this provider and share your feedback after the service!</p>
+        <div style="padding: 24px; text-align: center; background: #F8FAFC; border: 1px dashed var(--border-color); border-radius: var(--radius-sm);">
+          <p style="margin-bottom: 0; color: #64748B; font-size: 0.92rem;">No customer reviews yet. Book this provider and share your feedback after the service!</p>
         </div>
       <?php endif; ?>
     </div>
   </div>
 
-  <!-- Sidebar Column: Booking & Contact CTA -->
+  <!-- Sidebar Column: Booking CTA -->
   <div>
-    <div class="card" style="border-width: 3px; position: sticky; top: 90px;">
-      <span class="eyebrow">BOOK SERVICE</span>
-      <h3 style="margin-bottom: 8px;">Schedule an Appointment</h3>
-      <p style="font-size: 0.95rem; color: #555; margin-bottom: 18px;">
-        Choose your convenient date and address. Provider confirms your request directly.
+    <div class="card" style="position: sticky; top: 80px; box-shadow: var(--elevation-2);">
+      <span class="eyebrow">Schedule Appointment</span>
+      <h3 style="margin-bottom: 6px; font-size: 1.2rem;">Book This Provider</h3>
+      <p style="font-size: 0.9rem; color: #64748B; margin-bottom: 16px;">
+        Choose your preferred date and address. Provider confirms your request directly.
       </p>
 
-      <div style="margin-bottom: 20px; padding: 14px; background: var(--bg-secondary); border: 2px solid var(--border-color); border-radius: 6px;">
-        <div style="font-size: 0.85rem; font-weight: 700; color: #555;">Inspection / Visit Charge</div>
-        <div style="font-size: 1.6rem; font-weight: 900; color: var(--text-dark);">
+      <div style="margin-bottom: 20px; padding: 14px; background: #F8FAFC; border: 1px solid var(--border-color); border-radius: var(--radius-sm);">
+        <div style="font-size: 0.8rem; font-weight: 600; color: #64748B; text-transform: uppercase;">Standard Inspection Fee</div>
+        <div style="font-size: 1.6rem; font-weight: 700; color: #0F172A; margin: 2px 0;">
           &#8377;<?= number_format($provider['fee'], 2) ?>
         </div>
-        <div style="font-size: 0.75rem; color: #666; margin-top: 2px;">Pay directly to provider after work completion</div>
+        <div style="font-size: 0.78rem; color: #64748B;">Pay directly to technician after inspection</div>
       </div>
 
-      <a href="booking.php?provider_id=<?= $provider['id'] ?>" class="btn btn-block" style="padding: 14px; font-size: 1.05rem; margin-bottom: 16px;">
-        Book This Provider Now &rarr;
+      <a href="booking.php?provider_id=<?= $provider['id'] ?>" class="btn btn-block" style="padding: 12px; font-size: 0.95rem; margin-bottom: 16px;">
+        Book Service Now &rarr;
       </a>
 
-      <hr style="border: none; border-top: 1.5px solid #E0DFD8; margin: 16px 0;" />
+      <hr style="border: none; border-top: 1px solid var(--border-color); margin: 16px 0;" />
 
-      <h4 style="font-size: 1rem; margin-bottom: 10px;">Contact & Location</h4>
-      <div style="font-size: 0.9rem; color: #333; display: flex; flex-direction: column; gap: 8px;">
-        <div><strong>Service Area:</strong> <?= htmlspecialchars($provider['provider_address'] ?? 'Not specified') ?></div>
+      <h4 style="font-size: 0.95rem; margin-bottom: 10px; color: #0F172A;">Direct Information</h4>
+      <div style="font-size: 0.88rem; color: #475569; display: flex; flex-direction: column; gap: 8px;">
+        <div><strong>Service Area:</strong> <?= htmlspecialchars($provider['provider_address'] ?? 'Local coverage') ?></div>
         <div><strong>Phone:</strong> <?= htmlspecialchars($provider['provider_phone'] ?? 'Available on booking') ?></div>
         <div><strong>Email:</strong> <?= htmlspecialchars($provider['provider_email'] ?? 'Available on booking') ?></div>
       </div>

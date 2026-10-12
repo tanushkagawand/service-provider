@@ -24,23 +24,23 @@ require_once __DIR__ . '/../includes/header.php';
 ?>
 
 <div style="margin-bottom: 24px;">
-  <span class="eyebrow">ADMINISTRATION</span>
+  <span class="eyebrow">Administration</span>
   <h1>Registered Users & Accounts</h1>
   <p class="subtitle">Platform customers, service providers, and administrators.</p>
 </div>
 
-<!-- Filter Tabs -->
+<!-- Filter Chips -->
 <div style="display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap;">
-  <a href="users.php" class="btn-sm <?= $roleFilter === 'all' ? 'btn' : 'btn-outline' ?>" style="text-decoration:none;">
+  <a href="users.php" class="btn-sm <?= $roleFilter === 'all' ? 'btn' : 'btn-outline' ?>" style="border-radius: var(--radius-full); text-decoration:none;">
     All Users (<?= count($users) ?>)
   </a>
-  <a href="users.php?role=customer" class="btn-sm <?= $roleFilter === 'customer' ? 'btn' : 'btn-outline' ?>" style="text-decoration:none;">
+  <a href="users.php?role=customer" class="btn-sm <?= $roleFilter === 'customer' ? 'btn' : 'btn-outline' ?>" style="border-radius: var(--radius-full); text-decoration:none;">
     Customers
   </a>
-  <a href="users.php?role=provider" class="btn-sm <?= $roleFilter === 'provider' ? 'btn' : 'btn-outline' ?>" style="text-decoration:none;">
+  <a href="users.php?role=provider" class="btn-sm <?= $roleFilter === 'provider' ? 'btn' : 'btn-outline' ?>" style="border-radius: var(--radius-full); text-decoration:none;">
     Providers
   </a>
-  <a href="users.php?role=admin" class="btn-sm <?= $roleFilter === 'admin' ? 'btn' : 'btn-outline' ?>" style="text-decoration:none;">
+  <a href="users.php?role=admin" class="btn-sm <?= $roleFilter === 'admin' ? 'btn' : 'btn-outline' ?>" style="border-radius: var(--radius-full); text-decoration:none;">
     Administrators
   </a>
 </div>
@@ -61,11 +61,11 @@ require_once __DIR__ . '/../includes/header.php';
       <?php if (count($users) > 0): ?>
         <?php foreach ($users as $u): ?>
           <tr>
-            <td><strong>#<?= $u['id'] ?></strong></td>
-            <td><strong><?= htmlspecialchars($u['name']) ?></strong></td>
+            <td><span style="font-weight: 600; color: #64748B;">#<?= $u['id'] ?></span></td>
+            <td><strong style="color: #0F172A;"><?= htmlspecialchars($u['name']) ?></strong></td>
             <td>
-              <div><?= htmlspecialchars($u['email']) ?></div>
-              <div style="font-size: 0.85rem; color: #555;"><?= htmlspecialchars($u['phone'] ?? 'N/A') ?></div>
+              <div style="color: #0F172A;"><?= htmlspecialchars($u['email']) ?></div>
+              <div style="font-size: 0.8rem; color: #64748B;"><?= htmlspecialchars($u['phone'] ?? 'N/A') ?></div>
             </td>
             <td>
               <?php
@@ -76,17 +76,17 @@ require_once __DIR__ . '/../includes/header.php';
               ?>
               <span class="badge <?= $rCls ?>"><?= strtoupper($r) ?></span>
             </td>
-            <td style="font-size: 0.9rem; max-width: 260px;">
+            <td style="font-size: 0.88rem; max-width: 260px; color: #475569;">
               <?= htmlspecialchars($u['address'] ?? 'Not provided') ?>
             </td>
-            <td style="font-size: 0.85rem; color: #555;">
+            <td style="font-size: 0.82rem; color: #64748B;">
               <?= date('M d, Y', strtotime($u['created_at'])) ?>
             </td>
           </tr>
         <?php endforeach; ?>
       <?php else: ?>
         <tr>
-          <td colspan="6" style="text-align: center; padding: 36px; color: #666;">
+          <td colspan="6" style="text-align: center; padding: 36px; color: #64748B;">
             No users found matching selected filter.
           </td>
         </tr>
