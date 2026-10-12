@@ -1,0 +1,10 @@
+# Local database files
+*.db
+includes/local_service_finder.db
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log

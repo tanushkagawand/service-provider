@@ -2,49 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Book a Service | Local Service Finder</title>
-  <link rel="stylesheet" href="css/booking.css" />
+  <meta http-equiv="refresh" content="0;url=booking.php" />
+  <title>Redirecting to booking.php | Local Service Finder</title>
+  <script>window.location.replace('booking.php');</script>
 </head>
-<body>
-  <header class="booking-header">
-    <a class="brand" href="index.html"><img class="brand-mark" src="images/local-service-finder-mark.png" alt="" />Local Service Finder</a>
-    <nav aria-label="Main navigation"><a href="dashboard.html">Dashboard</a><a href="services.html">Services</a><a href="contact.html">Contact</a></nav>
-  </header>
-  <main class="booking-main">
-    <a class="back-link" href="dashboard.html">← Back to dashboard</a>
-    <section class="booking-card">
-      <p class="eyebrow">CUSTOMER REQUEST</p>
-      <h1>Book a service</h1>
-      <p class="intro">Tell us what you need. Choose the service and a time that works for you.</p>
-      <form id="booking-form">
-        <label for="service">Service</label>
-        <select id="service" name="service" required>
-          <option value="">Choose a service</option>
-          <option>Plumbing</option><option>Electrical</option><option>Cleaning</option><option>Carpentry</option><option>Home tutoring</option><option>Car repair</option><option>Other</option>
-        </select>
-        <div class="form-row">
-          <div><label for="date">Preferred date</label><input id="date" name="date" type="date" required /></div>
-          <div><label for="time">Preferred time</label><input id="time" name="time" type="time" required /></div>
-        </div>
-        <label for="location">Service address or area</label>
-        <input id="location" name="location" type="text" placeholder="Your address or neighborhood" required />
-        <label for="details">Describe what you need</label>
-        <textarea id="details" name="details" rows="4" placeholder="Add any useful details for the service provider" required></textarea>
-        <button type="submit">Send booking request</button>
-        <p id="confirmation" class="confirmation" role="status" hidden>Your booking request is ready. Connect a backend to send it to a provider.</p>
-      </form>
-    </section>
-  </main>
-  <script>
-    const bookingForm = document.getElementById('booking-form');
-    const confirmation = document.getElementById('confirmation');
-    bookingForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      confirmation.hidden = false;
-      bookingForm.reset();
-    });
-  </script>
+<body style="font-family: sans-serif; background: #F7F6F2; color: #20242A; padding: 40px; text-align: center;">
+  <h2>Redirecting to Local Service Finder (booking.php)...</h2>
+  <p><a href="booking.php" style="color: #20242A; font-weight: bold;">Click here if you are not redirected automatically.</a></p>
 </body>
 </html>
-

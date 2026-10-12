@@ -1,0 +1,9 @@
+# Apache configuration for Local Service Finder (XAMPP / Apache)
+RewriteEngine On
+
+# Redirect .html requests to corresponding .php files if they exist
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)\.html$ $1.php [L,R=301,QSA]
+
+# DirectoryIndex configuration
+DirectoryIndex index.php index.html

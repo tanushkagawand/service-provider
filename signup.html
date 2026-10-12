@@ -2,91 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Create Account | Local Service Finder</title>
-  <link rel="stylesheet" href="css/signup.css" />
+  <meta http-equiv="refresh" content="0;url=signup.php" />
+  <title>Redirecting to signup.php | Local Service Finder</title>
+  <script>window.location.replace('signup.php');</script>
 </head>
-<body>
-  <main class="signup-page">
-    <a class="back-link" href="index.html">← Back to home</a>
-
-    <section class="signup-card">
-      <img class="brand-mark" src="images/local-service-finder-mark.png" alt="Local Service Finder logo" />
-      <h1>Create your account</h1>
-      <p class="subtitle">Choose how you want to use Local Service Finder.</p>
-
-      <form id="signup-form" action="#" method="post">
-        <fieldset class="account-types">
-          <legend>Account type</legend>
-          <label class="type-option">
-            <input type="radio" name="account-type" value="customer" checked />
-            <span><strong>Customer</strong><small>Find local services</small></span>
-          </label>
-          <label class="type-option">
-            <input type="radio" name="account-type" value="provider" />
-            <span><strong>Service Provider</strong><small>Offer your services</small></span>
-          </label>
-        </fieldset>
-
-        <label for="name">Full name</label>
-        <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required />
-
-        <div class="provider-fields" id="provider-fields" hidden>
-          <label for="business-name">Business or profile name</label>
-          <input type="text" id="business-name" name="business-name" placeholder="Your business name" />
-
-          <label for="service-category">Service category</label>
-          <select id="service-category" name="service-category">
-            <option value="">Choose a service</option>
-            <option>Plumbing</option>
-            <option>Electrical</option>
-            <option>Cleaning</option>
-            <option>Carpentry</option>
-            <option>Home tutoring</option>
-            <option>Car repair</option>
-            <option>Other</option>
-          </select>
-        </div>
-
-        <label for="email">Email address</label>
-        <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required />
-
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="At least 8 characters" autocomplete="new-password" minlength="8" required />
-
-        <label for="confirm-password">Confirm password</label>
-        <input type="password" id="confirm-password" name="confirm-password" placeholder="Enter your password again" autocomplete="new-password" minlength="8" required />
-
-        <button type="submit">Create account</button>
-      </form>
-
-      <p class="login-prompt">Already have an account? <a href="login.html">Log in</a></p>
-    </section>
-  </main>
-
-  <script>
-    const accountTypeInputs = document.querySelectorAll('input[name="account-type"]');
-    const providerFields = document.getElementById('provider-fields');
-    const businessName = document.getElementById('business-name');
-    const serviceCategory = document.getElementById('service-category');
-
-    function updateProviderFields() {
-      const isProvider = document.querySelector('input[name="account-type"]:checked').value === 'provider';
-      providerFields.hidden = !isProvider;
-      businessName.required = isProvider;
-      serviceCategory.required = isProvider;
-    }
-
-    accountTypeInputs.forEach((input) => input.addEventListener('change', updateProviderFields));
-  </script>
-  <script>
-    document.getElementById('signup-form').addEventListener('submit', (event) => {
-      event.preventDefault();
-      const selectedRole = document.querySelector('input[name="account-type"]:checked').value;
-      localStorage.setItem('lsfRole', selectedRole);
-      window.location.href = 'dashboard.html';
-    });
-  </script></body>
+<body style="font-family: sans-serif; background: #F7F6F2; color: #20242A; padding: 40px; text-align: center;">
+  <h2>Redirecting to Local Service Finder (signup.php)...</h2>
+  <p><a href="signup.php" style="color: #20242A; font-weight: bold;">Click here if you are not redirected automatically.</a></p>
+</body>
 </html>
-
-
